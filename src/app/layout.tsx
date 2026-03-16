@@ -77,8 +77,60 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // JSON-LD structured data for Google LocalBusiness
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BarberShop",
+    "name": "International Styles Barber Shop",
+    "image": "https://jcbarbers.com/logo.png",
+    "url": "https://jcbarbers.com",
+    "telephone": "+1-201-459-9090",
+    "email": "info@jcbarbers.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "278 First St",
+      "addressLocality": "Jersey City",
+      "addressRegion": "NJ",
+      "postalCode": "07302",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 40.7178,
+      "longitude": -74.0431
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+        "opens": "10:00",
+        "closes": "19:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Friday", "Saturday"],
+        "opens": "09:00",
+        "closes": "19:00"
+      }
+    ],
+    "priceRange": "$$",
+    "paymentAccepted": "Cash, Credit Card",
+    "foundingDate": "2001",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "150"
+    }
+  };
+
   return (
     <html lang="en" className={`${cormorantGaramond.variable} ${raleway.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-body antialiased">
         <ScrollRevealProvider>{children}</ScrollRevealProvider>
       </body>
