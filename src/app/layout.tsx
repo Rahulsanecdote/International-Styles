@@ -19,7 +19,7 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://internationalstyles.com"),
+  metadataBase: new URL("https://jcbarbers.com"),
   title: "International Styles Barber Shop | Premium Cuts Since 2001",
   description:
     "Experience timeless grooming at International Styles Barber Shop. Serving the community with precision haircuts, straight razor shaves, and classic barbering since 2001. Book your appointment online.",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://internationalstyles.com",
+    url: "https://jcbarbers.com",
     siteName: "International Styles Barber Shop",
     title: "International Styles Barber Shop | Premium Cuts Since 2001",
     description:

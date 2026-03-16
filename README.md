@@ -9,7 +9,7 @@ A premium, production-ready website for **International Styles Barber Shop** (Es
 | Field            | Detail                                      |
 |------------------|---------------------------------------------|
 | **Client**       | International Styles Barber Shop            |
-| **Domain**       | internationalstyles.com                     |
+| **Domain**       | jcbarbers.com                               |
 | **Audience**     | Males, all ages, minimalist aesthetic       |
 | **Primary Goal** | Online bookings via Cal.com                 |
 | **Founded**      | 2001                                        |
@@ -181,7 +181,7 @@ international-styles/
 
 3. **Configure Custom Domain**
    - In Vercel dashboard, go to Settings → Domains
-   - Add `internationalstyles.com`
+   - Add `jcbarbers.com`
    - Update DNS records (Vercel provides instructions)
    - SSL is automatically provisioned
 

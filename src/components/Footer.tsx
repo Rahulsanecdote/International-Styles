@@ -104,10 +104,10 @@ export default function Footer() {
                 201.459.9090
               </a>
               <a
-                href="mailto:info@internationalstyles.com"
+                href="mailto:info@jcbarbers.com"
                 className="block font-body text-sm text-[#888888] hover:text-[#C9A84C] transition-colors duration-300 tracking-wide"
               >
-                info@internationalstyles.com
+                info@jcbarbers.com
               </a>
             </div>
 

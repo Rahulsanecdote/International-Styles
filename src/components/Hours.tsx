@@ -91,11 +91,11 @@ export default function Hours() {
               </a>
 
               <a
-                href="mailto:info@internationalstyles.com"
+                href="mailto:info@jcbarbers.com"
                 className="flex items-center gap-3 text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
               >
                 <span className="font-body text-sm tracking-wide">
-                  info@internationalstyles.com
+                  info@jcbarbers.com
                 </span>
               </a>
             </div>
