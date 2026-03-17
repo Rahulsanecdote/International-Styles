@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -9,12 +10,16 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-radial from-[#C9A84C]/5 via-transparent to-transparent opacity-30" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-16 text-center">
-        {/* Main Heading - Staggered Animation */}
-        <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-light italic text-[#F5F5F5] mb-8 opacity-0 animate-fade-up animation-delay-1">
-          International
-          <br />
-          <span className="text-[#C9A84C]">Styles</span>
-        </h1>
+        {/* Full Logo - Hero Centerpiece */}
+        <div className="relative w-full max-w-[840px] h-[200px] md:h-[280px] mx-auto mb-10 opacity-0 animate-fade-up animation-delay-1">
+          <Image
+            src="/dtf white.png"
+            alt="International Styles Barber Shop"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
 
         {/* Subheading */}
         <p className="font-body text-[11px] md:text-[12px] tracking-[0.45em] uppercase text-[#888888] mb-6 opacity-0 animate-fade-up animation-delay-2">

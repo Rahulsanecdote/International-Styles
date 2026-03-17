@@ -51,17 +51,22 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="reveal">
             <Link href="/" className="inline-flex items-center space-x-3 mb-6 group">
-              <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-105">
+              <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-105">
                 <Image
-                  src="/logo.svg"
+                  src="/dtf icon white.png"
                   alt="International Styles Barber Shop"
                   fill
                   className="object-contain"
                 />
               </div>
-              <span className="font-display text-xl font-light italic text-[#F5F5F5]">
-                International Styles
-              </span>
+              <div>
+                <span className="font-body text-sm tracking-[0.15em] uppercase text-[#F5F5F5] block">
+                  International Styles
+                </span>
+                <span className="font-body text-[9px] tracking-[0.2em] uppercase text-[#888888]">
+                  Barber Shop · Est. 2001
+                </span>
+              </div>
             </Link>
             <p className="font-body text-sm text-[#888888] tracking-wide leading-relaxed">
               Premium barbering and classic grooming since 2001.

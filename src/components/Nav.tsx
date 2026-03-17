@@ -35,16 +35,16 @@ export default function Nav() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-105">
+            <div className="relative w-9 h-9 transition-transform duration-300 group-hover:scale-105">
               <Image
-                src="/logo.svg"
+                src="/dtf icon white.png"
                 alt="International Styles Barber Shop"
                 fill
                 className="object-contain"
                 priority
               />
             </div>
-            <span className="font-display text-xl font-light italic text-[#F5F5F5] hidden sm:block">
+            <span className="font-body text-xs tracking-[0.15em] uppercase text-[#F5F5F5] hidden sm:block">
               International Styles
             </span>
           </Link>
