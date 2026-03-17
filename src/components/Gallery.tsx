@@ -14,15 +14,13 @@ export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [filter, setFilter] = useState<string>("all");
 
-  // TODO: Replace with actual gallery images
-  // For now, using placeholder data structure
   const images: GalleryImage[] = [
     { id: 1, src: "/gallery/fade-1.jpg", alt: "Precision Fade Cut", category: "fade" },
-    { id: 2, src: "/gallery/classic-1.jpg", alt: "Classic Gentleman's Cut", category: "classic" },
-    { id: 3, src: "/gallery/beard-1.jpg", alt: "Beard Sculpting", category: "beard" },
-    { id: 4, src: "/gallery/styling-1.jpg", alt: "Professional Styling", category: "styling" },
-    { id: 5, src: "/gallery/fade-2.jpg", alt: "Modern Fade", category: "fade" },
-    { id: 6, src: "/gallery/classic-2.jpg", alt: "Traditional Cut", category: "classic" },
+    { id: 2, src: "/gallery/fade-2.jpg", alt: "Modern Fade with Line Design", category: "fade" },
+    { id: 3, src: "/gallery/classic-1.jpg", alt: "Classic Gentleman's Cut", category: "classic" },
+    { id: 4, src: "/gallery/classic-2.jpg", alt: "Traditional Styling", category: "classic" },
+    { id: 5, src: "/gallery/beard-1.jpg", alt: "Beard Trim & Sculpting", category: "beard" },
+    { id: 6, src: "/gallery/styling-1.jpg", alt: "Professional Hair Styling", category: "styling" },
   ];
 
   const categories = [
@@ -84,37 +82,35 @@ export default function Gallery() {
               onClick={() => setSelectedImage(image)}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Placeholder for actual images */}
-              <div className="absolute inset-0 flex items-center justify-center text-[#C9A84C]">
-                <div className="text-center">
-                  <div className="font-display text-6xl mb-2">📸</div>
-                  <p className="font-body text-[10px] tracking-[0.3em] uppercase">
-                    {image.alt}
-                  </p>
-                </div>
-              </div>
+              {/* Actual Image */}
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-[#C9A84C]/0 group-hover:bg-[#C9A84C]/20 transition-all duration-500" />
+              <div className="absolute inset-0 bg-[#0A0A0A]/0 group-hover:bg-[#0A0A0A]/40 transition-all duration-500" />
 
               {/* Zoom Icon */}
               <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="w-8 h-8 border border-[#C9A84C] flex items-center justify-center">
-                  <span className="text-[#C9A84C] text-lg">+</span>
+                <div className="w-10 h-10 border border-[#C9A84C] bg-[#0A0A0A]/80 flex items-center justify-center">
+                  <span className="text-[#C9A84C] text-xl font-light">+</span>
                 </div>
+              </div>
+
+              {/* Image Caption on Hover */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#0A0A0A] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="font-body text-[10px] tracking-[0.3em] uppercase text-[#C9A84C]">
+                  {image.alt}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Note for actual implementation */}
-        <div className="mt-12 p-6 border border-[#C9A84C]/30 bg-[#111111] reveal">
-          <p className="font-body text-xs text-[#888888] tracking-wide">
-            <span className="text-[#C9A84C]">Note:</span> Add your actual gallery images to the{" "}
-            <code className="text-[#C9A84C]">/public/gallery/</code> folder and update the image paths in{" "}
-            <code className="text-[#C9A84C]">src/components/Gallery.tsx</code>
-          </p>
-        </div>
       </div>
 
       {/* Lightbox Modal */}
@@ -133,17 +129,25 @@ export default function Gallery() {
             </button>
 
             {/* Image Container */}
-            <div className="relative aspect-square bg-[#111111] border border-[#C9A84C]">
-              {/* Placeholder */}
-              <div className="absolute inset-0 flex items-center justify-center text-[#C9A84C]">
-                <div className="text-center">
-                  <div className="font-display text-9xl mb-4">📸</div>
-                  <p className="font-display text-2xl mb-2">{selectedImage.alt}</p>
-                  <p className="font-body text-[10px] tracking-[0.3em] uppercase text-[#888888]">
-                    {selectedImage.category}
-                  </p>
-                </div>
-              </div>
+            <div className="relative aspect-square bg-[#111111] border-2 border-[#C9A84C]">
+              <Image
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                fill
+                className="object-contain"
+                sizes="(max-width: 1280px) 100vw, 1280px"
+                priority
+              />
+            </div>
+
+            {/* Image Info */}
+            <div className="mt-6 text-center">
+              <p className="font-display text-2xl md:text-3xl font-light italic text-[#F5F5F5] mb-2">
+                {selectedImage.alt}
+              </p>
+              <p className="font-body text-[10px] tracking-[0.4em] uppercase text-[#C9A84C]">
+                {selectedImage.category}
+              </p>
             </div>
           </div>
         </div>
