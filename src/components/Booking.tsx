@@ -4,15 +4,15 @@ import { useEffect } from "react";
 
 declare global {
   interface Window {
-    Cal: any;
+    booksyWidget: any;
   }
 }
 
 export default function Booking() {
   useEffect(() => {
-    // Load Cal.com embed script
+    // Load Booksy widget script
     const script = document.createElement("script");
-    script.src = "https://app.cal.com/embed/embed.js";
+    script.src = "https://booksy.com/widget/code.js";
     script.async = true;
     document.body.appendChild(script);
 
@@ -24,7 +24,7 @@ export default function Booking() {
     };
   }, []);
 
-  const calUsername = process.env.NEXT_PUBLIC_CAL_USERNAME || "your-cal-username";
+  const booksyBusinessId = process.env.NEXT_PUBLIC_BOOKSY_BUSINESS_ID || "";
 
   return (
     <section id="booking" className="py-28 md:py-36 bg-[#0A0A0A]">
@@ -52,14 +52,33 @@ export default function Booking() {
           </a>
         </p>
 
-        {/* Cal.com Embed */}
+        {/* Booksy Widget Embed */}
         <div className="reveal">
-          <div
-            className="cal-inline-embed"
-            data-cal-link={`${calUsername}/30min`}
-            data-cal-config='{"theme":"dark","styles":{"branding":{"brandColor":"#C9A84C"}}}'
-            style={{ width: "100%", height: "700px", overflow: "hidden" }}
-          />
+          {booksyBusinessId ? (
+            <iframe
+              src={`https://booksy.com/widget/booking?business_id=${booksyBusinessId}`}
+              width="100%"
+              height="700"
+              frameBorder="0"
+              className="border border-[#222222]"
+              title="Booksy Booking Widget"
+            />
+          ) : (
+            <div className="bg-[#111111] border border-[#222222] p-12 text-center">
+              <p className="text-[#C9A84C] font-body text-lg mb-4">
+                Online booking coming soon!
+              </p>
+              <p className="text-[#888888] font-body mb-6">
+                Please call us to schedule your appointment
+              </p>
+              <a
+                href="tel:+12014599090"
+                className="inline-block bg-[#C9A84C] text-[#0A0A0A] px-8 py-4 font-body text-sm uppercase tracking-wider hover:bg-[#E8C96A] transition-all"
+              >
+                Call 201.459.9090
+              </a>
+            </div>
+          )}
         </div>
 
         {/* Additional Info */}
