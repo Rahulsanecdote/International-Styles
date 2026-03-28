@@ -12,6 +12,7 @@ export default function Reviews() {
     averageRating: number;
   } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
   const [showSubmitForm, setShowSubmitForm] = useState(false);
 
   // Fetch reviews on component mount
@@ -29,6 +30,7 @@ export default function Reviews() {
       }
     } catch (error) {
       console.error("Error fetching reviews:", error);
+      setHasError(true);
     } finally {
       setIsLoading(false);
     }
@@ -98,7 +100,11 @@ export default function Reviews() {
         </div>
 
         {/* Reviews Carousel */}
-        {isLoading ? (
+        {hasError ? (
+          <p className="text-center text-[#666666] font-body py-12">
+            Unable to load reviews. Please try again later.
+          </p>
+        ) : isLoading ? (
           <div className="text-center py-12">
             <div className="inline-block w-8 h-8 border-2 border-[#C9A84C] border-t-transparent rounded-full animate-spin" />
             <p className="text-[#666666] font-body mt-4">Loading reviews...</p>

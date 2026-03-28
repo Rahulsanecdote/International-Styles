@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { BUSINESS } from "@/lib/config";
 
 export default function Hours() {
   const [currentDay, setCurrentDay] = useState<number | null>(null);
@@ -72,37 +73,37 @@ export default function Hours() {
 
             <address className="not-italic mb-8">
               <p className="font-display text-xl font-light text-[#F5F5F5] leading-relaxed mb-2">
-                278 First St,
+                {BUSINESS.address},
               </p>
               <p className="font-display text-xl font-light text-[#F5F5F5] leading-relaxed">
-                Jersey City, NJ
+                {BUSINESS.city}, {BUSINESS.state}
               </p>
             </address>
 
             {/* Contact Info */}
             <div className="space-y-4 mb-10">
               <a
-                href="tel:+12014599090"
+                href={`tel:${BUSINESS.phoneTel}`}
                 className="flex items-center gap-3 text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
               >
                 <span className="font-body text-sm tracking-wide">
-                  201.459.9090
+                  {BUSINESS.phoneDot}
                 </span>
               </a>
 
               <a
-                href="mailto:info@jcbarbers.com"
+                href={`mailto:${BUSINESS.email}`}
                 className="flex items-center gap-3 text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
               >
                 <span className="font-body text-sm tracking-wide">
-                  info@jcbarbers.com
+                  {BUSINESS.email}
                 </span>
               </a>
             </div>
 
             {/* Get Directions Link */}
             <a
-              href="https://maps.google.com/?q=278+First+St+Jersey+City+NJ"
+              href={`https://maps.google.com/?q=${encodeURIComponent(BUSINESS.fullAddress)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-4 group"

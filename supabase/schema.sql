@@ -26,13 +26,20 @@ CREATE INDEX IF NOT EXISTS reviews_rating_idx ON reviews(rating);
 -- Enable Row Level Security (RLS)
 ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
 
--- Create policy to allow anyone to read reviews
-CREATE POLICY "Anyone can read reviews" ON reviews
-  FOR SELECT USING (true);
+-- Public reads: show verified reviews + all website-submitted reviews (pending moderation visible to submitters)
+-- NOTE: Run DROP/CREATE statements below in the Supabase SQL editor to apply RLS changes.
+-- DROP POLICY IF EXISTS "Anyone can read reviews" ON reviews;
+CREATE POLICY "Anyone can read verified reviews" ON reviews
+  FOR SELECT USING (verified = true OR source = 'website');
 
--- Create policy to allow anyone to insert reviews (will be validated via API)
+-- Inserts: require non-empty author/text and valid rating at the database level (belt-and-suspenders with API validation)
+-- DROP POLICY IF EXISTS "Anyone can submit reviews" ON reviews;
 CREATE POLICY "Anyone can submit reviews" ON reviews
-  FOR INSERT WITH CHECK (true);
+  FOR INSERT WITH CHECK (
+    author IS NOT NULL AND length(trim(author)) > 0
+    AND text IS NOT NULL AND length(trim(text)) >= 10
+    AND rating >= 1 AND rating <= 5
+  );
 
 -- Create function to update the updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()

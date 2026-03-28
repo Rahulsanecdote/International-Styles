@@ -15,6 +15,44 @@ export interface Review {
   createdAt: string;
 }
 
+// Typed shape of a row returned from Supabase
+interface SupabaseReviewRow {
+  id: string;
+  author: string;
+  rating: number;
+  text: string;
+  source: Review["source"];
+  verified: boolean;
+  created_at: string;
+}
+
+// Shape for inserting a review row into Supabase
+interface ReviewInsert {
+  author: string;
+  email?: string;
+  rating: number;
+  text: string;
+  source: string;
+  verified: boolean;
+}
+
+// Typed shape of a Google Places review
+interface GoogleReview {
+  author_name: string;
+  rating: number;
+  text: string;
+  time: number;
+}
+
+// Typed shape of a Yelp review
+interface YelpReview {
+  id: string;
+  user: { name: string };
+  rating: number;
+  text: string;
+  time_created: string;
+}
+
 // Initialize Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
@@ -23,6 +61,18 @@ let supabase: ReturnType<typeof createClient> | null = null;
 
 if (supabaseUrl && supabaseAnonKey) {
   supabase = createClient(supabaseUrl, supabaseAnonKey);
+}
+
+/** Fetch with a 5-second abort timeout */
+function fetchWithTimeout(
+  url: string,
+  options: RequestInit & { next?: { revalidate: number } }
+): Promise<Response> {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 5000);
+  return fetch(url, { ...options, signal: controller.signal }).finally(() =>
+    clearTimeout(timeoutId)
+  );
 }
 
 /**
@@ -42,12 +92,12 @@ async function fetchSupabaseReviews(): Promise<Review[]> {
 
     if (error) throw error;
 
-    return (data || []).map((review: any) => ({
+    return (data || []).map((review: SupabaseReviewRow) => ({
       id: review.id,
       author: review.author,
       rating: review.rating,
       text: review.text,
-      source: review.source as Review["source"],
+      source: review.source,
       verified: review.verified,
       createdAt: review.created_at,
     }));
@@ -70,9 +120,9 @@ async function fetchGoogleReviews(): Promise<Review[]> {
   }
 
   try {
-    const response = await fetch(
+    const response = await fetchWithTimeout(
       `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&key=${apiKey}`,
-      { next: { revalidate: 3600 } } // Cache for 1 hour
+      { next: { revalidate: 3600 } }
     );
 
     if (!response.ok) throw new Error("Failed to fetch Google reviews");
@@ -81,7 +131,7 @@ async function fetchGoogleReviews(): Promise<Review[]> {
 
     if (!data.result?.reviews) return [];
 
-    return data.result.reviews.map((review: any, index: number) => ({
+    return data.result.reviews.map((review: GoogleReview, index: number) => ({
       id: `google-${index}`,
       author: review.author_name,
       rating: review.rating,
@@ -109,13 +159,13 @@ async function fetchYelpReviews(): Promise<Review[]> {
   }
 
   try {
-    const response = await fetch(
+    const response = await fetchWithTimeout(
       `https://api.yelp.com/v3/businesses/${businessId}/reviews`,
       {
         headers: {
           Authorization: `Bearer ${apiKey}`,
         },
-        next: { revalidate: 3600 }, // Cache for 1 hour
+        next: { revalidate: 3600 },
       }
     );
 
@@ -125,7 +175,7 @@ async function fetchYelpReviews(): Promise<Review[]> {
 
     if (!data.reviews) return [];
 
-    return data.reviews.map((review: any) => ({
+    return data.reviews.map((review: YelpReview) => ({
       id: review.id,
       author: review.user.name,
       rating: review.rating,
@@ -262,23 +312,28 @@ export async function submitReview(review: {
   }
 
   try {
-    const { error } = await (supabase as any).from("reviews").insert([{
+    const row: ReviewInsert = {
       author: review.author,
       email: review.email,
       rating: review.rating,
       text: review.text,
       source: "website",
-      verified: false, // Reviews from website need verification
-    }]);
+      verified: false,
+    };
+    // Supabase JS without generated DB types resolves Insert to `never`.
+    // The typed ReviewInsert above ensures correctness; the cast is safe.
+    const { error } = await supabase
+      .from("reviews")
+      .insert([row] as never);
 
     if (error) throw error;
 
     return { success: true };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error submitting review:", error);
     return {
       success: false,
-      error: error.message || "Failed to submit review",
+      error: error instanceof Error ? error.message : "Failed to submit review",
     };
   }
 }

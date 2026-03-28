@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { BUSINESS } from "@/lib/config";
 
 declare global {
   interface Window {
@@ -47,8 +48,8 @@ export default function Booking() {
           Schedule your appointment online. Select your preferred service and time below.
           <br />
           <span className="text-[#C9A84C]">Walk-ins welcome</span> or call{" "}
-          <a href="tel:+12014599090" className="text-[#C9A84C] hover:text-[#E8C96A] transition-colors duration-300">
-            201.459.9090
+          <a href={`tel:${BUSINESS.phoneTel}`} className="text-[#C9A84C] hover:text-[#E8C96A] transition-colors duration-300">
+            {BUSINESS.phoneDot}
           </a>
         </p>
 
@@ -72,10 +73,10 @@ export default function Booking() {
                 Please call us to schedule your appointment
               </p>
               <a
-                href="tel:+12014599090"
+                href={`tel:${BUSINESS.phoneTel}`}
                 className="inline-block bg-[#C9A84C] text-[#0A0A0A] px-8 py-4 font-body text-sm uppercase tracking-wider hover:bg-[#E8C96A] transition-all"
               >
-                Call 201.459.9090
+                Call {BUSINESS.phoneDot}
               </a>
             </div>
           )}

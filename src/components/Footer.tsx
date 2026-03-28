@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { BUSINESS } from "@/lib/config";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -102,16 +103,16 @@ export default function Footer() {
             {/* Contact Info */}
             <div className="space-y-4 mb-8">
               <a
-                href="tel:+12014599090"
+                href={`tel:${BUSINESS.phoneTel}`}
                 className="block font-body text-sm text-[#888888] hover:text-[#C9A84C] transition-colors duration-300 tracking-wide"
               >
-                201.459.9090
+                {BUSINESS.phoneDot}
               </a>
               <a
-                href="mailto:info@jcbarbers.com"
+                href={`mailto:${BUSINESS.email}`}
                 className="block font-body text-sm text-[#888888] hover:text-[#C9A84C] transition-colors duration-300 tracking-wide"
               >
-                info@jcbarbers.com
+                {BUSINESS.email}
               </a>
             </div>
 

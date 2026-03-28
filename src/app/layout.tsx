@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Raleway } from "next/font/google";
 import "./globals.css";
 import ScrollRevealProvider from "@/components/ScrollRevealProvider";
+import { BUSINESS } from "@/lib/config";
 
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
@@ -81,17 +82,17 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BarberShop",
-    "name": "International Styles Barber Shop",
-    "image": "https://jcbarbers.com/logo.png",
-    "url": "https://jcbarbers.com",
-    "telephone": "+1-201-459-9090",
-    "email": "info@jcbarbers.com",
+    "name": `${BUSINESS.name} Barber Shop`,
+    "image": `${BUSINESS.url}/logo.png`,
+    "url": BUSINESS.url,
+    "telephone": BUSINESS.phoneFormatted,
+    "email": BUSINESS.email,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "278 First St",
-      "addressLocality": "Jersey City",
-      "addressRegion": "NJ",
-      "postalCode": "07302",
+      "streetAddress": BUSINESS.address,
+      "addressLocality": BUSINESS.city,
+      "addressRegion": BUSINESS.state,
+      "postalCode": BUSINESS.zip,
       "addressCountry": "US"
     },
     "geo": {

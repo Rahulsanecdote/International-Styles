@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import type { Review } from "@/lib/reviews";
 
 interface ReviewsCarouselProps {
@@ -8,45 +8,10 @@ interface ReviewsCarouselProps {
 }
 
 export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
-  const animationFrameRef = useRef<number>();
-  const scrollPositionRef = useRef(0);
 
-  // Duplicate reviews for seamless infinite scroll
-  const duplicatedReviews = [...reviews, ...reviews, ...reviews];
-
-  useEffect(() => {
-    const scrollContainer = scrollContainerRef.current;
-    if (!scrollContainer || reviews.length === 0) return;
-
-    const scrollSpeed = 0.5; // pixels per frame
-    const cardWidth = 400; // approximate width of one card + gap
-    const resetPoint = reviews.length * cardWidth;
-
-    const animate = () => {
-      if (!isPaused && scrollContainer) {
-        scrollPositionRef.current += scrollSpeed;
-
-        // Reset scroll position for infinite effect
-        if (scrollPositionRef.current >= resetPoint) {
-          scrollPositionRef.current = 0;
-        }
-
-        scrollContainer.scrollLeft = scrollPositionRef.current;
-      }
-
-      animationFrameRef.current = requestAnimationFrame(animate);
-    };
-
-    animationFrameRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, [reviews.length, isPaused]);
+  // Duplicate once (2x) for seamless CSS loop — down from 3x with rAF
+  const duplicatedReviews = [...reviews, ...reviews];
 
   if (reviews.length === 0) {
     return (
@@ -56,21 +21,32 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
     );
   }
 
+  // Speed scales with number of reviews so each card gets equal screen time
+  const durationSeconds = reviews.length * 8;
+
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
+      {/* Inline keyframes — scoped to this component */}
+      <style>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+      `}</style>
+
       {/* Gradient Overlays */}
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
 
-      {/* Scrolling Container */}
+      {/* Scrolling Container — pure CSS, GPU-accelerated */}
       <div
-        ref={scrollContainerRef}
-        className="overflow-x-hidden flex gap-6 py-8"
+        className="flex gap-6 py-8"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         style={{
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
+          animation: `marquee ${durationSeconds}s linear infinite`,
+          animationPlayState: isPaused ? "paused" : "running",
+          willChange: "transform",
         }}
       >
         {duplicatedReviews.map((review, index) => (
