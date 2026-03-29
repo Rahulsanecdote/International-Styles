@@ -21,23 +21,12 @@ export default function Footer() {
         </svg>
       ),
     },
-    // TODO: Update with actual Yelp business link
     {
-      name: "Yelp",
-      href: "https://www.yelp.com/biz/international-styles",
+      name: "Booksy",
+      href: "https://booksy.com/en-us/7016_international-styles-barbershop_barber-shop_28561_jersey-city",
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12.271.343l-7.662 13.289a.5.5 0 0 0 .433.747h15.31a.5.5 0 0 0 .433-.747L13.123.343a.5.5 0 0 0-.852 0zM12 6.5c.829 0 1.5.671 1.5 1.5s-.671 1.5-1.5 1.5-1.5-.671-1.5-1.5.671-1.5 1.5-1.5zm-1.5 4.5h3v5h-3v-5z" />
-        </svg>
-      ),
-    },
-    // TODO: Update with actual Google Business link
-    {
-      name: "Google",
-      href: "https://g.page/international-styles",
-      icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
+          <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zM9 14h2v2H9v-2zm4 0h2v2h-2v-2zm-4-4h2v2H9v-2zm4 0h2v2h-2v-2z" />
         </svg>
       ),
     },
@@ -53,7 +42,7 @@ export default function Footer() {
             <Link href="/" className="inline-flex items-center space-x-3 mb-6 group">
               <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-105">
                 <Image
-                  src="/dtf icon white.png"
+                  src="/logo-icon.png"
                   alt="International Styles Barber Shop"
                   fill
                   className="object-contain"
@@ -142,23 +131,22 @@ export default function Footer() {
             </span>
 
             <div className="flex items-center gap-6">
-              {/* TODO: Update review links with actual business profiles */}
               <a
-                href="https://www.yelp.com/biz/international-styles"
+                href="https://booksy.com/en-us/7016_international-styles-barbershop_barber-shop_28561_jersey-city"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-body text-[11px] tracking-[0.3em] uppercase px-8 py-3 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500"
               >
-                Yelp
+                Booksy
               </a>
 
               <a
-                href="https://g.page/international-styles/review"
+                href="https://www.instagram.com/intl_stylesbarbershop"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-body text-[11px] tracking-[0.3em] uppercase px-8 py-3 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500"
               >
-                Google
+                Instagram
               </a>
             </div>
           </div>

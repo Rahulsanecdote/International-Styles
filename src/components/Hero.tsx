@@ -13,7 +13,7 @@ export default function Hero() {
         {/* Full Logo - Hero Centerpiece */}
         <div className="relative w-full max-w-[840px] h-[200px] md:h-[280px] mx-auto mb-10 opacity-0 animate-fade-up animation-delay-1">
           <Image
-            src="/dtf white.png"
+            src="/logo-full.png"
             alt="International Styles Barber Shop"
             fill
             className="object-contain"

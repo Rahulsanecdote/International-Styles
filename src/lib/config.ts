@@ -9,10 +9,10 @@ export const BUSINESS = {
   phoneTel: "+12014599090",
   phoneFormatted: "+1-201-459-9090",
   email: "info@jcbarbers.com",
-  address: "278 First St",
+  address: "278 First Street",
   city: "Jersey City",
   state: "NJ",
   zip: "07302",
-  fullAddress: "278 First St, Jersey City, NJ",
+  fullAddress: "278 First Street, Jersey City, NJ 07302",
   url: "https://jcbarbers.com",
 } as const;

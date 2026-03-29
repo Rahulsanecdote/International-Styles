@@ -1,29 +1,49 @@
 export default function Services() {
   const services = [
     {
-      name: "Precision Haircut",
-      description: "Classic cut tailored to your style",
-      price: "$35",
-    },
-    {
-      name: "Straight Razor Shave",
-      description: "Hot towel treatment with traditional technique",
-      price: "$45",
-    },
-    {
-      name: "Beard Trim & Shape",
-      description: "Expert sculpting and grooming",
-      price: "$25",
-    },
-    {
-      name: "Haircut + Beard Trim",
-      description: "Complete grooming package",
+      name: "Men's Haircut",
+      description: "Scissor trim, fades, broads, and more",
       price: "$55",
     },
     {
-      name: "Fade / Taper",
-      description: "Modern precision fading",
-      price: "$40",
+      name: "Men's Haircut and Beard",
+      description: "Complete cut with expert beard grooming",
+      price: "$80",
+    },
+    {
+      name: "Men's Haircut w/ Hot Towel Shave",
+      description: "Full cut paired with a traditional hot towel shave",
+      price: "$100",
+    },
+    {
+      name: "Shape Up w/ Hot Towel Shave",
+      description: "Clean lineup with a classic hot towel finish",
+      price: "$80",
+    },
+    {
+      name: "Shape-Up w/ Beard Trim",
+      description: "Precision edges and beard sculpting",
+      price: "$60",
+    },
+    {
+      name: "Hot Towel Shave",
+      description: "Traditional straight razor with hot towel treatment",
+      price: "$55",
+    },
+    {
+      name: "Beard Trim",
+      description: "Expert shaping and grooming",
+      price: "$35",
+    },
+    {
+      name: "Shape Up",
+      description: "Clean, precise lineup and edges",
+      price: "$35",
+    },
+    {
+      name: "Kids Regular Haircut",
+      description: "For the young gentlemen",
+      price: "$45",
     },
   ];
 

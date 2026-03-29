@@ -37,7 +37,7 @@ export default function Nav() {
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="relative w-9 h-9 transition-transform duration-300 group-hover:scale-105">
               <Image
-                src="/dtf icon white.png"
+                src="/logo-icon.png"
                 alt="International Styles Barber Shop"
                 fill
                 className="object-contain"

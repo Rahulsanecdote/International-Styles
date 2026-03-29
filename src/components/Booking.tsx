@@ -1,31 +1,36 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BUSINESS } from "@/lib/config";
 
-declare global {
-  interface Window {
-    booksyWidget: any;
-  }
-}
-
 export default function Booking() {
+  const [widgetLoaded, setWidgetLoaded] = useState(false);
+  const [widgetError, setWidgetError] = useState(false);
+
+  const widgetUrl = process.env.NEXT_PUBLIC_BOOKSY_WIDGET_URL || "";
+  const profileUrl =
+    process.env.NEXT_PUBLIC_BOOKSY_PROFILE_URL ||
+    "https://booksy.com/en-us/7016_international-styles-barbershop_barber-shop_28561_jersey-city";
+
   useEffect(() => {
-    // Load Booksy widget script
+    if (!widgetUrl) {
+      setWidgetError(true);
+      return;
+    }
+
     const script = document.createElement("script");
-    script.src = "https://booksy.com/widget/code.js";
+    script.src = widgetUrl;
     script.async = true;
+    script.onload = () => setWidgetLoaded(true);
+    script.onerror = () => setWidgetError(true);
     document.body.appendChild(script);
 
     return () => {
-      // Cleanup script on unmount
       if (script.parentNode) {
         script.parentNode.removeChild(script);
       }
     };
-  }, []);
-
-  const booksyBusinessId = process.env.NEXT_PUBLIC_BOOKSY_BUSINESS_ID || "";
+  }, [widgetUrl]);
 
   return (
     <section id="booking" className="py-28 md:py-36 bg-[#0A0A0A]">
@@ -53,32 +58,45 @@ export default function Booking() {
           </a>
         </p>
 
-        {/* Booksy Widget Embed */}
+        {/* Booksy Widget */}
         <div className="reveal">
-          {booksyBusinessId ? (
-            <iframe
-              src={`https://booksy.com/widget/booking?business_id=${booksyBusinessId}`}
-              width="100%"
-              height="700"
-              frameBorder="0"
-              className="border border-[#222222]"
-              title="Booksy Booking Widget"
-            />
-          ) : (
+          {widgetError ? (
             <div className="bg-[#111111] border border-[#222222] p-12 text-center">
-              <p className="text-[#C9A84C] font-body text-lg mb-4">
-                Online booking coming soon!
+              <p className="text-[#C9A84C] font-display text-2xl font-light italic mb-4">
+                Book on Booksy
               </p>
-              <p className="text-[#888888] font-body mb-6">
-                Please call us to schedule your appointment
+              <p className="text-[#888888] font-body text-sm tracking-wide mb-8">
+                Schedule your appointment directly through our Booksy page
               </p>
               <a
-                href={`tel:${BUSINESS.phoneTel}`}
-                className="inline-block bg-[#C9A84C] text-[#0A0A0A] px-8 py-4 font-body text-sm uppercase tracking-wider hover:bg-[#E8C96A] transition-all"
+                href={profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block font-body text-[11px] tracking-[0.3em] uppercase px-10 py-4 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500"
               >
-                Call {BUSINESS.phoneDot}
+                Book on Booksy
               </a>
+              <p className="text-[#888888] font-body text-sm tracking-wide mt-6">
+                or call{" "}
+                <a href={`tel:${BUSINESS.phoneTel}`} className="text-[#C9A84C] hover:text-[#E8C96A] transition-colors duration-300">
+                  {BUSINESS.phoneDot}
+                </a>
+              </p>
             </div>
+          ) : (
+            <>
+              {/* Loading skeleton shown until widget script loads */}
+              {!widgetLoaded && (
+                <div className="bg-[#111111] border border-[#222222] p-12 text-center">
+                  <div className="inline-block w-8 h-8 border-2 border-[#C9A84C] border-t-transparent animate-spin mb-4" />
+                  <p className="text-[#888888] font-body text-sm tracking-wide">
+                    Loading booking widget...
+                  </p>
+                </div>
+              )}
+              {/* Booksy widget renders into this container */}
+              <div id="booksy-widget-container" data-booksy-id="7016" />
+            </>
           )}
         </div>
 
