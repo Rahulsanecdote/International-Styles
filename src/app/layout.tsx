@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Raleway } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import ScrollRevealProvider from "@/components/ScrollRevealProvider";
 import { BUSINESS } from "@/lib/config";
@@ -9,13 +9,6 @@ const cormorantGaramond = Cormorant_Garamond({
   weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
   variable: "--font-display",
-  display: "swap",
-});
-
-const raleway = Raleway({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-body",
   display: "swap",
 });
 
@@ -125,7 +118,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${cormorantGaramond.variable} ${raleway.variable}`}>
+    <html lang="en" className={cormorantGaramond.variable}>
       <head>
         <script
           type="application/ld+json"
