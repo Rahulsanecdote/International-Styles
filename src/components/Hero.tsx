@@ -15,7 +15,7 @@ export default function Hero() {
       {/* Radial Gold Glow Background */}
       <div className="absolute inset-0 bg-gradient-radial from-[#C9A84C]/5 via-transparent to-transparent opacity-30" />
 
-      <div className="relative z-10 mx-auto grid min-h-screen max-w-4xl grid-rows-[1fr_auto] px-6 pt-24 pb-10 text-center lg:px-16 md:pt-28 md:pb-12">
+      <div className="relative z-10 mx-auto grid min-h-screen max-w-4xl grid-rows-[1fr_auto] px-6 pt-24 pb-6 text-center lg:px-16 md:pt-28 md:pb-8">
         <div className="flex items-center justify-center">
           <div className="w-full">
             {/* Full Logo - Hero Centerpiece */}
@@ -55,14 +55,14 @@ export default function Hero() {
         </div>
 
         {/* Contact Stack */}
-        <div className="flex justify-center pt-12 opacity-0 animate-fade-up animation-delay-4 md:pt-16">
+        <div className="flex justify-center pt-8 opacity-0 animate-fade-up animation-delay-4 md:pt-10">
           <div className="flex flex-col items-center text-center">
             <span className="font-display text-[9px] tracking-[0.48em] uppercase text-[#C9A84C]">
               Connect
             </span>
-            <div className="mt-4 h-14 w-px bg-gradient-to-b from-[#C9A84C] to-[#C9A84C]/10" />
+            <div className="mt-3 h-10 w-px bg-gradient-to-b from-[#C9A84C] to-[#C9A84C]/10 md:h-12" />
 
-            <div className="mt-8 space-y-5">
+            <div className="mt-6 space-y-3 md:space-y-4">
               <a
                 href={`tel:${BUSINESS.phoneTel}`}
                 className="block font-display text-[clamp(1.6rem,2vw,2.2rem)] font-light text-[#9A9A9A] hover:text-[#C9A84C] transition-colors duration-300"
@@ -77,7 +77,7 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="mt-10 flex items-center gap-8 text-[#9A9A9A]">
+            <div className="mt-7 flex items-center gap-8 text-[#9A9A9A]">
               <a
                 href={instagramUrl}
                 target="_blank"

@@ -56,10 +56,10 @@ export default function Reviews() {
   };
 
   return (
-    <section id="reviews" className="py-24 md:py-32 bg-[#0A0A0A] reveal">
+    <section id="reviews" className="py-20 md:py-24 bg-[#0A0A0A] reveal">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <p className="text-[#C9A84C] font-display text-sm uppercase tracking-[0.2em] mb-4">
             Client Reviews
           </p>
@@ -114,7 +114,7 @@ export default function Reviews() {
         )}
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-16">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
           <button
             onClick={() => setShowSubmitForm(!showSubmitForm)}
             className="bg-[#C9A84C] text-[#0A0A0A] px-8 py-4 font-display text-sm uppercase tracking-wider hover:bg-[#E8C96A] transition-all"
@@ -131,7 +131,7 @@ export default function Reviews() {
 
         {/* Submit Form */}
         {showSubmitForm && (
-          <div className="mt-16 max-w-2xl mx-auto bg-[#111111] border border-[#222222] p-8 md:p-12">
+          <div className="mt-12 max-w-2xl mx-auto bg-[#111111] border border-[#222222] p-8 md:p-12">
             <ReviewSubmitForm onSuccess={handleReviewSuccess} />
           </div>
         )}

@@ -36,10 +36,10 @@ export default function Gallery() {
     : images.filter(img => img.category === filter);
 
   return (
-    <section id="gallery" className="py-28 md:py-36 bg-[#0A0A0A]">
+    <section id="gallery" className="py-20 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Section Label */}
-        <div className="flex items-center gap-5 mb-14 reveal">
+        <div className="flex items-center gap-5 mb-12 reveal">
           <div className="w-10 h-px bg-[#C9A84C]" />
           <span className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C]">
             Our Work
@@ -52,12 +52,12 @@ export default function Gallery() {
         </h2>
 
         {/* Subtitle */}
-        <p className="font-display text-sm text-[#888888] tracking-wide mb-12 max-w-2xl reveal">
+        <p className="font-display text-sm text-[#888888] tracking-wide mb-10 max-w-2xl reveal">
           A showcase of our craft. Every cut tells a story of precision, style, and tradition.
         </p>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap gap-4 mb-16 reveal">
+        <div className="flex flex-wrap gap-4 mb-12 reveal">
           {categories.map((cat) => (
             <button
               key={cat.value}

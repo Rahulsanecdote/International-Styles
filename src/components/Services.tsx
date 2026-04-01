@@ -48,10 +48,10 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-28 md:py-36 bg-[#0A0A0A]">
+    <section id="services" className="py-20 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-4xl mx-auto px-6 lg:px-16">
         {/* Section Label */}
-        <div className="flex items-center gap-5 mb-14 reveal">
+        <div className="flex items-center gap-5 mb-12 reveal">
           <div className="w-10 h-px bg-[#C9A84C]" />
           <span className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C]">
             Services
@@ -59,7 +59,7 @@ export default function Services() {
         </div>
 
         {/* Heading */}
-        <h2 className="font-display text-5xl md:text-6xl font-light italic text-[#F5F5F5] mb-16 reveal">
+        <h2 className="font-display text-5xl md:text-6xl font-light italic text-[#F5F5F5] mb-12 reveal">
           Our Craft
         </h2>
 
@@ -94,7 +94,7 @@ export default function Services() {
         <div className="border-b border-[#1A1A1A] mt-1" />
 
         {/* Call to Action */}
-        <div className="mt-16 text-center reveal">
+        <div className="mt-12 text-center reveal">
           <a
             href="#booking"
             className="inline-flex items-center gap-4 group"
