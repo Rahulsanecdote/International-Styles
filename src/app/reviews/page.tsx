@@ -123,7 +123,7 @@ export default function ReviewsPage() {
                       ))}
                     </div>
                   </div>
-                  <p className="text-[#666666] font-display text-sm">Average Rating</p>
+                  <p className="text-[#8A8A8A] font-display text-sm">Average Rating</p>
                 </div>
 
                 <div className="h-16 w-px bg-[#222222]" />
@@ -132,7 +132,7 @@ export default function ReviewsPage() {
                   <p className="font-display text-5xl text-[#F5F5F5] italic">
                     {stats.total}
                   </p>
-                  <p className="text-[#666666] font-display text-sm mt-2">Total Reviews</p>
+                  <p className="text-[#8A8A8A] font-display text-sm mt-2">Total Reviews</p>
                 </div>
 
                 {(stats.google > 0 || stats.yelp > 0 || stats.booksy > 0) && (
@@ -142,19 +142,19 @@ export default function ReviewsPage() {
                       {stats.google > 0 && (
                         <div className="text-center">
                           <p className="font-display text-2xl text-[#C9A84C]">{stats.google}</p>
-                          <p className="text-[#666666] font-display text-xs mt-1">Google</p>
+                          <p className="text-[#8A8A8A] font-display text-xs mt-1">Google</p>
                         </div>
                       )}
                       {stats.yelp > 0 && (
                         <div className="text-center">
                           <p className="font-display text-2xl text-[#C9A84C]">{stats.yelp}</p>
-                          <p className="text-[#666666] font-display text-xs mt-1">Yelp</p>
+                          <p className="text-[#8A8A8A] font-display text-xs mt-1">Yelp</p>
                         </div>
                       )}
                       {stats.booksy > 0 && (
                         <div className="text-center">
                           <p className="font-display text-2xl text-[#C9A84C]">{stats.booksy}</p>
-                          <p className="text-[#666666] font-display text-xs mt-1">Booksy</p>
+                          <p className="text-[#8A8A8A] font-display text-xs mt-1">Booksy</p>
                         </div>
                       )}
                     </div>
@@ -287,17 +287,17 @@ export default function ReviewsPage() {
           {isLoading ? (
             <div className="text-center py-20">
               <div className="inline-block w-12 h-12 border-2 border-[#C9A84C] border-t-transparent rounded-full animate-spin" />
-              <p className="text-[#666666] font-display mt-4">Loading reviews...</p>
+              <p className="text-[#8A8A8A] font-display mt-4">Loading reviews...</p>
             </div>
           ) : filteredReviews.length === 0 ? (
             <div className="text-center py-20 border border-[#222222] bg-[#111111]">
-              <p className="text-[#666666] font-display text-lg">
+              <p className="text-[#8A8A8A] font-display text-lg">
                 No reviews found with the selected filters.
               </p>
             </div>
           ) : (
             <>
-              <p className="text-[#666666] font-display text-sm mb-6">
+              <p className="text-[#8A8A8A] font-display text-sm mb-6">
                 Showing {filteredReviews.length} review{filteredReviews.length !== 1 ? "s" : ""}
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -336,14 +336,14 @@ export default function ReviewsPage() {
                         {review.author}
                       </p>
                       <div className="flex items-center justify-between mt-2">
-                        <p className="text-xs text-[#666666] uppercase tracking-wider font-display">
+                        <p className="text-xs text-[#8A8A8A] uppercase tracking-wider font-display">
                           {review.source === "google" && "Google Reviews"}
                           {review.source === "yelp" && "Yelp"}
                           {review.source === "booksy" && "Booksy"}
                           {review.source === "website" && "Website"}
                           {review.verified && " • Verified"}
                         </p>
-                        <p className="text-xs text-[#666666] font-display">
+                        <p className="text-xs text-[#8A8A8A] font-display">
                           {new Date(review.createdAt).toLocaleDateString()}
                         </p>
                       </div>
