@@ -94,7 +94,7 @@ export default function Testimonials() {
         {/* Section Label */}
         <div className="flex items-center gap-5 mb-14 reveal">
           <div className="w-10 h-px bg-[#C9A84C]" />
-          <span className="font-body text-[10px] tracking-[0.4em] uppercase text-[#C9A84C]">
+          <span className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C]">
             Testimonials
           </span>
         </div>
@@ -131,14 +131,14 @@ export default function Testimonials() {
                   {/* Author Info */}
                   <div className="flex items-center justify-between border-t border-[#222222] pt-6">
                     <div>
-                      <p className="font-body text-sm text-[#F5F5F5] tracking-wide mb-1">
+                      <p className="font-display text-sm text-[#F5F5F5] tracking-wide mb-1">
                         {testimonial.name}
                       </p>
-                      <p className="font-body text-xs text-[#888888] tracking-wide">
+                      <p className="font-display text-xs text-[#888888] tracking-wide">
                         {testimonial.service}
                       </p>
                     </div>
-                    <p className="font-body text-xs text-[#666666] tracking-wide">
+                    <p className="font-display text-xs text-[#666666] tracking-wide">
                       {testimonial.date}
                     </p>
                   </div>
@@ -185,7 +185,7 @@ export default function Testimonials() {
 
         {/* Review CTA */}
         <div className="mt-16 text-center reveal">
-          <p className="font-body text-sm text-[#888888] tracking-wide mb-6">
+          <p className="font-display text-sm text-[#888888] tracking-wide mb-6">
             Had a great experience? Share your story
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -193,7 +193,7 @@ export default function Testimonials() {
               href="https://www.yelp.com/biz/international-styles"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-[11px] tracking-[0.3em] uppercase px-8 py-3 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500"
+              className="font-display text-[11px] tracking-[0.3em] uppercase px-8 py-3 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500"
             >
               Review on Yelp
             </a>
@@ -201,7 +201,7 @@ export default function Testimonials() {
               href="https://g.page/international-styles/review"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-[11px] tracking-[0.3em] uppercase px-8 py-3 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500"
+              className="font-display text-[11px] tracking-[0.3em] uppercase px-8 py-3 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500"
             >
               Review on Google
             </a>

@@ -60,7 +60,7 @@ export default function Reviews() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-[#C9A84C] font-body text-sm uppercase tracking-[0.2em] mb-4">
+          <p className="text-[#C9A84C] font-display text-sm uppercase tracking-[0.2em] mb-4">
             Client Reviews
           </p>
           <h2 className="font-display text-5xl md:text-7xl font-light italic text-[#F5F5F5] mb-6">
@@ -91,7 +91,7 @@ export default function Reviews() {
                     ))}
                   </div>
                 </div>
-                <p className="text-[#666666] font-body text-sm">
+                <p className="text-[#666666] font-display text-sm">
                   Based on {stats.total} review{stats.total !== 1 ? "s" : ""}
                 </p>
               </div>
@@ -101,13 +101,13 @@ export default function Reviews() {
 
         {/* Reviews Carousel */}
         {hasError ? (
-          <p className="text-center text-[#666666] font-body py-12">
+          <p className="text-center text-[#666666] font-display py-12">
             Unable to load reviews. Please try again later.
           </p>
         ) : isLoading ? (
           <div className="text-center py-12">
             <div className="inline-block w-8 h-8 border-2 border-[#C9A84C] border-t-transparent rounded-full animate-spin" />
-            <p className="text-[#666666] font-body mt-4">Loading reviews...</p>
+            <p className="text-[#666666] font-display mt-4">Loading reviews...</p>
           </div>
         ) : (
           <ReviewsCarousel reviews={reviews} />
@@ -117,13 +117,13 @@ export default function Reviews() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-16">
           <button
             onClick={() => setShowSubmitForm(!showSubmitForm)}
-            className="bg-[#C9A84C] text-[#0A0A0A] px-8 py-4 font-body text-sm uppercase tracking-wider hover:bg-[#E8C96A] transition-all"
+            className="bg-[#C9A84C] text-[#0A0A0A] px-8 py-4 font-display text-sm uppercase tracking-wider hover:bg-[#E8C96A] transition-all"
           >
             {showSubmitForm ? "Hide Form" : "Write a Review"}
           </button>
           <a
             href="/reviews"
-            className="border border-[#C9A84C] text-[#C9A84C] px-8 py-4 font-body text-sm uppercase tracking-wider hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all"
+            className="border border-[#C9A84C] text-[#C9A84C] px-8 py-4 font-display text-sm uppercase tracking-wider hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all"
           >
             View All Reviews
           </a>

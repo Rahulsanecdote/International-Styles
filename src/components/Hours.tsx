@@ -27,7 +27,7 @@ export default function Hours() {
         {/* Section Label */}
         <div className="flex items-center gap-5 mb-14 reveal">
           <div className="w-10 h-px bg-[#C9A84C]" />
-          <span className="font-body text-[10px] tracking-[0.4em] uppercase text-[#C9A84C]">
+          <span className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C]">
             Visit Us
           </span>
         </div>
@@ -41,7 +41,7 @@ export default function Hours() {
         <div className="grid md:grid-cols-2 gap-16 md:gap-20">
           {/* Hours Column */}
           <div className="reveal">
-            <h3 className="font-body text-[10px] tracking-[0.4em] uppercase text-[#C9A84C] mb-8">
+            <h3 className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C] mb-8">
               Business Hours
             </h3>
             <div className="space-y-5">
@@ -54,7 +54,7 @@ export default function Hours() {
                       : "text-[#888888]"
                   }`}
                 >
-                  <span className="font-body text-sm tracking-wide">
+                  <span className="font-display text-sm tracking-wide">
                     {item.day}
                   </span>
                   <span className="font-display text-lg font-light">
@@ -67,7 +67,7 @@ export default function Hours() {
 
           {/* Location Column */}
           <div className="reveal">
-            <h3 className="font-body text-[10px] tracking-[0.4em] uppercase text-[#C9A84C] mb-8">
+            <h3 className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C] mb-8">
               Location
             </h3>
 
@@ -86,7 +86,7 @@ export default function Hours() {
                 href={`tel:${BUSINESS.phoneTel}`}
                 className="flex items-center gap-3 text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
               >
-                <span className="font-body text-sm tracking-wide">
+                <span className="font-display text-sm tracking-wide">
                   {BUSINESS.phoneDot}
                 </span>
               </a>
@@ -95,7 +95,7 @@ export default function Hours() {
                 href={`mailto:${BUSINESS.email}`}
                 className="flex items-center gap-3 text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
               >
-                <span className="font-body text-sm tracking-wide">
+                <span className="font-display text-sm tracking-wide">
                   {BUSINESS.email}
                 </span>
               </a>
@@ -108,7 +108,7 @@ export default function Hours() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-4 group"
             >
-              <span className="font-body text-[11px] tracking-[0.3em] uppercase text-[#888888] group-hover:text-[#C9A84C] transition-colors duration-300">
+              <span className="font-display text-[11px] tracking-[0.3em] uppercase text-[#888888] group-hover:text-[#C9A84C] transition-colors duration-300">
                 Get Directions
               </span>
               <div className="w-0 group-hover:w-12 h-px bg-[#C9A84C] transition-all duration-500" />

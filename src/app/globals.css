@@ -11,8 +11,6 @@
 
 html {
   scroll-behavior: smooth;
-  /* Unify both font variables to Cormorant Garamond (single font system) */
-  --font-body: var(--font-display);
 }
 
 body {

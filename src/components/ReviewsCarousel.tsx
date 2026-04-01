@@ -16,7 +16,7 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
   if (reviews.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-[#666666] font-body">No reviews available yet.</p>
+        <p className="text-[#666666] font-display">No reviews available yet.</p>
       </div>
     );
   }
@@ -74,7 +74,7 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
             </div>
 
             {/* Review Text */}
-            <p className="text-[#CCCCCC] font-body text-base leading-relaxed mb-6 line-clamp-4">
+            <p className="text-[#CCCCCC] font-display text-base leading-relaxed mb-6 line-clamp-4">
               &ldquo;{review.text}&rdquo;
             </p>
 
@@ -84,7 +84,7 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
                 <p className="font-display text-lg text-[#F5F5F5] italic">
                   {review.author}
                 </p>
-                <p className="text-xs text-[#666666] uppercase tracking-wider font-body mt-1">
+                <p className="text-xs text-[#666666] uppercase tracking-wider font-display mt-1">
                   {review.source === "google" && "Google Reviews"}
                   {review.source === "yelp" && "Yelp"}
                   {review.source === "booksy" && "Booksy"}
@@ -116,7 +116,7 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
 
       {/* Pause Indicator */}
       {isPaused && (
-        <div className="absolute bottom-2 right-2 bg-[#C9A84C] text-[#0A0A0A] px-3 py-1 text-xs font-body uppercase tracking-wider">
+        <div className="absolute bottom-2 right-2 bg-[#C9A84C] text-[#0A0A0A] px-3 py-1 text-xs font-display uppercase tracking-wider">
           Paused
         </div>
       )}

@@ -44,7 +44,7 @@ export default function Nav() {
                 priority
               />
             </div>
-            <span className="font-body text-xs tracking-[0.15em] uppercase text-[#F5F5F5] hidden sm:block">
+            <span className="font-display text-xs tracking-[0.15em] uppercase text-[#F5F5F5] hidden sm:block">
               International Styles
             </span>
           </Link>
@@ -55,7 +55,7 @@ export default function Nav() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="font-body text-[11px] tracking-[0.3em] uppercase text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
+                  className="font-display text-[11px] tracking-[0.3em] uppercase text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
                 >
                   {link.label}
                 </Link>
@@ -110,7 +110,7 @@ export default function Nav() {
               <Link
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="font-body text-2xl tracking-[0.3em] uppercase text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
+                className="font-display text-2xl tracking-[0.3em] uppercase text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
               >
                 {link.label}
               </Link>

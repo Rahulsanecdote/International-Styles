@@ -41,7 +41,7 @@ export default function Gallery() {
         {/* Section Label */}
         <div className="flex items-center gap-5 mb-14 reveal">
           <div className="w-10 h-px bg-[#C9A84C]" />
-          <span className="font-body text-[10px] tracking-[0.4em] uppercase text-[#C9A84C]">
+          <span className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C]">
             Our Work
           </span>
         </div>
@@ -52,7 +52,7 @@ export default function Gallery() {
         </h2>
 
         {/* Subtitle */}
-        <p className="font-body text-sm text-[#888888] tracking-wide mb-12 max-w-2xl reveal">
+        <p className="font-display text-sm text-[#888888] tracking-wide mb-12 max-w-2xl reveal">
           A showcase of our craft. Every cut tells a story of precision, style, and tradition.
         </p>
 
@@ -62,7 +62,7 @@ export default function Gallery() {
             <button
               key={cat.value}
               onClick={() => setFilter(cat.value)}
-              className={`font-body text-[11px] tracking-[0.3em] uppercase px-6 py-3 border transition-all duration-300 ${
+              className={`font-display text-[11px] tracking-[0.3em] uppercase px-6 py-3 border transition-all duration-300 ${
                 filter === cat.value
                   ? "bg-[#C9A84C] text-[#0A0A0A] border-[#C9A84C]"
                   : "border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A]"
@@ -103,7 +103,7 @@ export default function Gallery() {
 
               {/* Image Caption on Hover */}
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#0A0A0A] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="font-body text-[10px] tracking-[0.3em] uppercase text-[#C9A84C]">
+                <p className="font-display text-[10px] tracking-[0.3em] uppercase text-[#C9A84C]">
                   {image.alt}
                 </p>
               </div>
@@ -125,7 +125,7 @@ export default function Gallery() {
               onClick={() => setSelectedImage(null)}
               className="absolute -top-12 right-0 text-[#C9A84C] hover:text-[#E8C96A] transition-colors"
             >
-              <span className="font-body text-sm tracking-[0.3em] uppercase">Close ✕</span>
+              <span className="font-display text-sm tracking-[0.3em] uppercase">Close ✕</span>
             </button>
 
             {/* Image Container */}
@@ -145,7 +145,7 @@ export default function Gallery() {
               <p className="font-display text-2xl md:text-3xl font-light italic text-[#F5F5F5] mb-2">
                 {selectedImage.alt}
               </p>
-              <p className="font-body text-[10px] tracking-[0.4em] uppercase text-[#C9A84C]">
+              <p className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C]">
                 {selectedImage.category}
               </p>
             </div>

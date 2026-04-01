@@ -69,14 +69,14 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
         <h3 className="font-display text-3xl md:text-4xl font-light italic text-[#F5F5F5] mb-3">
           Share Your Experience
         </h3>
-        <p className="text-[#999999] font-body">
+        <p className="text-[#999999] font-display">
           Your feedback helps us continue delivering exceptional service
         </p>
       </div>
 
       {/* Star Rating Picker */}
       <div className="flex flex-col items-center space-y-3">
-        <label className="font-body text-sm uppercase tracking-wider text-[#C9A84C]">
+        <label className="font-display text-sm uppercase tracking-wider text-[#C9A84C]">
           Your Rating
         </label>
         <div className="flex gap-2">
@@ -106,7 +106,7 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
           ))}
         </div>
         {formData.rating > 0 && (
-          <p className="text-sm text-[#999999] font-body">
+          <p className="text-sm text-[#999999] font-display">
             {formData.rating === 5 && "Exceptional!"}
             {formData.rating === 4 && "Great!"}
             {formData.rating === 3 && "Good"}
@@ -118,7 +118,7 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
 
       {/* Name Input */}
       <div>
-        <label htmlFor="author" className="block font-body text-sm uppercase tracking-wider text-[#C9A84C] mb-2">
+        <label htmlFor="author" className="block font-display text-sm uppercase tracking-wider text-[#C9A84C] mb-2">
           Name <span className="text-red-500">*</span>
         </label>
         <input
@@ -127,14 +127,14 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
           required
           value={formData.author}
           onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-          className="w-full bg-[#111111] border border-[#222222] text-[#F5F5F5] px-4 py-3 font-body focus:outline-none focus:border-[#C9A84C] transition-colors"
+          className="w-full bg-[#111111] border border-[#222222] text-[#F5F5F5] px-4 py-3 font-display focus:outline-none focus:border-[#C9A84C] transition-colors"
           placeholder="Your name"
         />
       </div>
 
       {/* Email Input (Optional) */}
       <div>
-        <label htmlFor="email" className="block font-body text-sm uppercase tracking-wider text-[#C9A84C] mb-2">
+        <label htmlFor="email" className="block font-display text-sm uppercase tracking-wider text-[#C9A84C] mb-2">
           Email <span className="text-[#666666] text-xs normal-case">(Optional)</span>
         </label>
         <input
@@ -142,14 +142,14 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
           id="email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full bg-[#111111] border border-[#222222] text-[#F5F5F5] px-4 py-3 font-body focus:outline-none focus:border-[#C9A84C] transition-colors"
+          className="w-full bg-[#111111] border border-[#222222] text-[#F5F5F5] px-4 py-3 font-display focus:outline-none focus:border-[#C9A84C] transition-colors"
           placeholder="your@email.com"
         />
       </div>
 
       {/* Review Text */}
       <div>
-        <label htmlFor="text" className="block font-body text-sm uppercase tracking-wider text-[#C9A84C] mb-2">
+        <label htmlFor="text" className="block font-display text-sm uppercase tracking-wider text-[#C9A84C] mb-2">
           Your Review <span className="text-red-500">*</span>
         </label>
         <textarea
@@ -158,12 +158,12 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
           rows={5}
           value={formData.text}
           onChange={(e) => setFormData({ ...formData, text: e.target.value })}
-          className="w-full bg-[#111111] border border-[#222222] text-[#F5F5F5] px-4 py-3 font-body focus:outline-none focus:border-[#C9A84C] transition-colors resize-none"
+          className="w-full bg-[#111111] border border-[#222222] text-[#F5F5F5] px-4 py-3 font-display focus:outline-none focus:border-[#C9A84C] transition-colors resize-none"
           placeholder="Tell us about your experience..."
           minLength={10}
           maxLength={1000}
         />
-        <p className="text-xs text-[#666666] mt-1 font-body">
+        <p className="text-xs text-[#666666] mt-1 font-display">
           {formData.text.length}/1000 characters (minimum 10)
         </p>
       </div>
@@ -172,7 +172,7 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
       <button
         type="submit"
         disabled={isSubmitting || formData.rating === 0}
-        className="w-full bg-[#C9A84C] text-[#0A0A0A] px-8 py-4 font-body text-sm uppercase tracking-wider hover:bg-[#E8C96A] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-[#C9A84C] text-[#0A0A0A] px-8 py-4 font-display text-sm uppercase tracking-wider hover:bg-[#E8C96A] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? "Submitting..." : "Submit Review"}
       </button>
@@ -184,7 +184,7 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
             message.type === "success"
               ? "bg-[#C9A84C]/10 border-[#C9A84C] text-[#C9A84C]"
               : "bg-red-900/10 border-red-500 text-red-500"
-          } font-body text-sm`}
+          } font-display text-sm`}
         >
           {message.text}
         </div>

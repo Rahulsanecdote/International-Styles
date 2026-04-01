@@ -22,7 +22,6 @@ const config: Config = {
       },
       fontFamily: {
         display: ["var(--font-display)", "serif"],
-        body: ["var(--font-display)", "serif"],
       },
       keyframes: {
         "fade-up": {

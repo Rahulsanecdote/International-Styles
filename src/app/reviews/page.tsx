@@ -87,13 +87,13 @@ export default function ReviewsPage() {
         <div className="max-w-7xl mx-auto px-6 py-16">
           {/* Page Header */}
           <div className="text-center mb-16">
-            <p className="text-[#C9A84C] font-body text-sm uppercase tracking-[0.2em] mb-4">
+            <p className="text-[#C9A84C] font-display text-sm uppercase tracking-[0.2em] mb-4">
               Client Reviews
             </p>
             <h1 className="font-display text-6xl md:text-8xl font-light italic text-[#F5F5F5] mb-6">
               All Reviews
             </h1>
-            <p className="text-[#999999] font-body text-lg max-w-2xl mx-auto">
+            <p className="text-[#999999] font-display text-lg max-w-2xl mx-auto">
               Read what our clients have to say about their experience at International Styles
             </p>
 
@@ -123,7 +123,7 @@ export default function ReviewsPage() {
                       ))}
                     </div>
                   </div>
-                  <p className="text-[#666666] font-body text-sm">Average Rating</p>
+                  <p className="text-[#666666] font-display text-sm">Average Rating</p>
                 </div>
 
                 <div className="h-16 w-px bg-[#222222]" />
@@ -132,7 +132,7 @@ export default function ReviewsPage() {
                   <p className="font-display text-5xl text-[#F5F5F5] italic">
                     {stats.total}
                   </p>
-                  <p className="text-[#666666] font-body text-sm mt-2">Total Reviews</p>
+                  <p className="text-[#666666] font-display text-sm mt-2">Total Reviews</p>
                 </div>
 
                 {(stats.google > 0 || stats.yelp > 0 || stats.booksy > 0) && (
@@ -141,20 +141,20 @@ export default function ReviewsPage() {
                     <div className="flex gap-6">
                       {stats.google > 0 && (
                         <div className="text-center">
-                          <p className="font-body text-2xl text-[#C9A84C]">{stats.google}</p>
-                          <p className="text-[#666666] font-body text-xs mt-1">Google</p>
+                          <p className="font-display text-2xl text-[#C9A84C]">{stats.google}</p>
+                          <p className="text-[#666666] font-display text-xs mt-1">Google</p>
                         </div>
                       )}
                       {stats.yelp > 0 && (
                         <div className="text-center">
-                          <p className="font-body text-2xl text-[#C9A84C]">{stats.yelp}</p>
-                          <p className="text-[#666666] font-body text-xs mt-1">Yelp</p>
+                          <p className="font-display text-2xl text-[#C9A84C]">{stats.yelp}</p>
+                          <p className="text-[#666666] font-display text-xs mt-1">Yelp</p>
                         </div>
                       )}
                       {stats.booksy > 0 && (
                         <div className="text-center">
-                          <p className="font-body text-2xl text-[#C9A84C]">{stats.booksy}</p>
-                          <p className="text-[#666666] font-body text-xs mt-1">Booksy</p>
+                          <p className="font-display text-2xl text-[#C9A84C]">{stats.booksy}</p>
+                          <p className="text-[#666666] font-display text-xs mt-1">Booksy</p>
                         </div>
                       )}
                     </div>
@@ -168,13 +168,13 @@ export default function ReviewsPage() {
           <div className="mb-12 space-y-6">
             {/* Rating Filter */}
             <div>
-              <p className="text-[#C9A84C] font-body text-sm uppercase tracking-wider mb-3">
+              <p className="text-[#C9A84C] font-display text-sm uppercase tracking-wider mb-3">
                 Filter by Rating
               </p>
               <div className="flex flex-wrap gap-3">
                 <button
                   onClick={() => setActiveFilter("all")}
-                  className={`px-6 py-2 font-body text-sm uppercase tracking-wider transition-all ${
+                  className={`px-6 py-2 font-display text-sm uppercase tracking-wider transition-all ${
                     activeFilter === "all"
                       ? "bg-[#C9A84C] text-[#0A0A0A]"
                       : "bg-[#111111] text-[#C9A84C] border border-[#222222] hover:border-[#C9A84C]"
@@ -186,7 +186,7 @@ export default function ReviewsPage() {
                   <button
                     key={rating}
                     onClick={() => setActiveFilter(rating as 1 | 2 | 3 | 4 | 5)}
-                    className={`px-6 py-2 font-body text-sm uppercase tracking-wider transition-all flex items-center gap-2 ${
+                    className={`px-6 py-2 font-display text-sm uppercase tracking-wider transition-all flex items-center gap-2 ${
                       activeFilter === rating
                         ? "bg-[#C9A84C] text-[#0A0A0A]"
                         : "bg-[#111111] text-[#C9A84C] border border-[#222222] hover:border-[#C9A84C]"
@@ -200,13 +200,13 @@ export default function ReviewsPage() {
 
             {/* Source Filter */}
             <div>
-              <p className="text-[#C9A84C] font-body text-sm uppercase tracking-wider mb-3">
+              <p className="text-[#C9A84C] font-display text-sm uppercase tracking-wider mb-3">
                 Filter by Source
               </p>
               <div className="flex flex-wrap gap-3">
                 <button
                   onClick={() => setActiveSource("all")}
-                  className={`px-6 py-2 font-body text-sm uppercase tracking-wider transition-all ${
+                  className={`px-6 py-2 font-display text-sm uppercase tracking-wider transition-all ${
                     activeSource === "all"
                       ? "bg-[#C9A84C] text-[#0A0A0A]"
                       : "bg-[#111111] text-[#C9A84C] border border-[#222222] hover:border-[#C9A84C]"
@@ -217,7 +217,7 @@ export default function ReviewsPage() {
                 {stats && stats.google > 0 && (
                   <button
                     onClick={() => setActiveSource("google")}
-                    className={`px-6 py-2 font-body text-sm uppercase tracking-wider transition-all ${
+                    className={`px-6 py-2 font-display text-sm uppercase tracking-wider transition-all ${
                       activeSource === "google"
                         ? "bg-[#C9A84C] text-[#0A0A0A]"
                         : "bg-[#111111] text-[#C9A84C] border border-[#222222] hover:border-[#C9A84C]"
@@ -229,7 +229,7 @@ export default function ReviewsPage() {
                 {stats && stats.yelp > 0 && (
                   <button
                     onClick={() => setActiveSource("yelp")}
-                    className={`px-6 py-2 font-body text-sm uppercase tracking-wider transition-all ${
+                    className={`px-6 py-2 font-display text-sm uppercase tracking-wider transition-all ${
                       activeSource === "yelp"
                         ? "bg-[#C9A84C] text-[#0A0A0A]"
                         : "bg-[#111111] text-[#C9A84C] border border-[#222222] hover:border-[#C9A84C]"
@@ -241,7 +241,7 @@ export default function ReviewsPage() {
                 {stats && stats.booksy > 0 && (
                   <button
                     onClick={() => setActiveSource("booksy")}
-                    className={`px-6 py-2 font-body text-sm uppercase tracking-wider transition-all ${
+                    className={`px-6 py-2 font-display text-sm uppercase tracking-wider transition-all ${
                       activeSource === "booksy"
                         ? "bg-[#C9A84C] text-[#0A0A0A]"
                         : "bg-[#111111] text-[#C9A84C] border border-[#222222] hover:border-[#C9A84C]"
@@ -253,7 +253,7 @@ export default function ReviewsPage() {
                 {stats && stats.website > 0 && (
                   <button
                     onClick={() => setActiveSource("website")}
-                    className={`px-6 py-2 font-body text-sm uppercase tracking-wider transition-all ${
+                    className={`px-6 py-2 font-display text-sm uppercase tracking-wider transition-all ${
                       activeSource === "website"
                         ? "bg-[#C9A84C] text-[#0A0A0A]"
                         : "bg-[#111111] text-[#C9A84C] border border-[#222222] hover:border-[#C9A84C]"
@@ -270,7 +270,7 @@ export default function ReviewsPage() {
           <div className="mb-12 text-center">
             <button
               onClick={() => setShowSubmitForm(!showSubmitForm)}
-              className="bg-[#C9A84C] text-[#0A0A0A] px-8 py-4 font-body text-sm uppercase tracking-wider hover:bg-[#E8C96A] transition-all"
+              className="bg-[#C9A84C] text-[#0A0A0A] px-8 py-4 font-display text-sm uppercase tracking-wider hover:bg-[#E8C96A] transition-all"
             >
               {showSubmitForm ? "Hide Form" : "Write a Review"}
             </button>
@@ -287,17 +287,17 @@ export default function ReviewsPage() {
           {isLoading ? (
             <div className="text-center py-20">
               <div className="inline-block w-12 h-12 border-2 border-[#C9A84C] border-t-transparent rounded-full animate-spin" />
-              <p className="text-[#666666] font-body mt-4">Loading reviews...</p>
+              <p className="text-[#666666] font-display mt-4">Loading reviews...</p>
             </div>
           ) : filteredReviews.length === 0 ? (
             <div className="text-center py-20 border border-[#222222] bg-[#111111]">
-              <p className="text-[#666666] font-body text-lg">
+              <p className="text-[#666666] font-display text-lg">
                 No reviews found with the selected filters.
               </p>
             </div>
           ) : (
             <>
-              <p className="text-[#666666] font-body text-sm mb-6">
+              <p className="text-[#666666] font-display text-sm mb-6">
                 Showing {filteredReviews.length} review{filteredReviews.length !== 1 ? "s" : ""}
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -326,7 +326,7 @@ export default function ReviewsPage() {
                     </div>
 
                     {/* Review Text */}
-                    <p className="text-[#CCCCCC] font-body text-sm leading-relaxed mb-4">
+                    <p className="text-[#CCCCCC] font-display text-sm leading-relaxed mb-4">
                       &ldquo;{review.text}&rdquo;
                     </p>
 
@@ -336,14 +336,14 @@ export default function ReviewsPage() {
                         {review.author}
                       </p>
                       <div className="flex items-center justify-between mt-2">
-                        <p className="text-xs text-[#666666] uppercase tracking-wider font-body">
+                        <p className="text-xs text-[#666666] uppercase tracking-wider font-display">
                           {review.source === "google" && "Google Reviews"}
                           {review.source === "yelp" && "Yelp"}
                           {review.source === "booksy" && "Booksy"}
                           {review.source === "website" && "Website"}
                           {review.verified && " • Verified"}
                         </p>
-                        <p className="text-xs text-[#666666] font-body">
+                        <p className="text-xs text-[#666666] font-display">
                           {new Date(review.createdAt).toLocaleDateString()}
                         </p>
                       </div>

@@ -49,15 +49,15 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <span className="font-body text-sm tracking-[0.15em] uppercase text-[#F5F5F5] block">
+                <span className="font-display text-sm tracking-[0.15em] uppercase text-[#F5F5F5] block">
                   International Styles
                 </span>
-                <span className="font-body text-[9px] tracking-[0.2em] uppercase text-[#888888]">
+                <span className="font-display text-[9px] tracking-[0.2em] uppercase text-[#888888]">
                   Barber Shop · Est. 2001
                 </span>
               </div>
             </Link>
-            <p className="font-body text-sm text-[#888888] tracking-wide leading-relaxed">
+            <p className="font-display text-sm text-[#888888] tracking-wide leading-relaxed">
               Premium barbering and classic grooming since 2001.
               <br />
               <span className="text-[#C9A84C]">Tradition meets precision.</span>
@@ -66,7 +66,7 @@ export default function Footer() {
 
           {/* Navigation Column */}
           <div className="reveal">
-            <h3 className="font-body text-[10px] tracking-[0.4em] uppercase text-[#C9A84C] mb-6">
+            <h3 className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C] mb-6">
               Navigation
             </h3>
             <ul className="space-y-4">
@@ -74,7 +74,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="font-body text-sm text-[#888888] hover:text-[#C9A84C] transition-colors duration-300 tracking-wide"
+                    className="font-display text-sm text-[#888888] hover:text-[#C9A84C] transition-colors duration-300 tracking-wide"
                   >
                     {item.name}
                   </Link>
@@ -85,7 +85,7 @@ export default function Footer() {
 
           {/* Contact & Social Column */}
           <div className="reveal">
-            <h3 className="font-body text-[10px] tracking-[0.4em] uppercase text-[#C9A84C] mb-6">
+            <h3 className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C] mb-6">
               Connect
             </h3>
 
@@ -93,13 +93,13 @@ export default function Footer() {
             <div className="space-y-4 mb-8">
               <a
                 href={`tel:${BUSINESS.phoneTel}`}
-                className="block font-body text-sm text-[#888888] hover:text-[#C9A84C] transition-colors duration-300 tracking-wide"
+                className="block font-display text-sm text-[#888888] hover:text-[#C9A84C] transition-colors duration-300 tracking-wide"
               >
                 {BUSINESS.phoneDot}
               </a>
               <a
                 href={`mailto:${BUSINESS.email}`}
-                className="block font-body text-sm text-[#888888] hover:text-[#C9A84C] transition-colors duration-300 tracking-wide"
+                className="block font-display text-sm text-[#888888] hover:text-[#C9A84C] transition-colors duration-300 tracking-wide"
               >
                 {BUSINESS.email}
               </a>
@@ -126,7 +126,7 @@ export default function Footer() {
         {/* Review CTAs */}
         <div className="py-10 border-t border-[#1A1A1A]">
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 reveal">
-            <span className="font-body text-[10px] tracking-[0.4em] uppercase text-[#888888]">
+            <span className="font-display text-[10px] tracking-[0.4em] uppercase text-[#888888]">
               Leave us a review
             </span>
 
@@ -135,7 +135,7 @@ export default function Footer() {
                 href="https://booksy.com/en-us/7016_international-styles-barbershop_barber-shop_28561_jersey-city"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-[11px] tracking-[0.3em] uppercase px-8 py-3 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500"
+                className="font-display text-[11px] tracking-[0.3em] uppercase px-8 py-3 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500"
               >
                 Booksy
               </a>
@@ -144,7 +144,7 @@ export default function Footer() {
                 href="https://www.instagram.com/intl_stylesbarbershop"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-[11px] tracking-[0.3em] uppercase px-8 py-3 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500"
+                className="font-display text-[11px] tracking-[0.3em] uppercase px-8 py-3 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500"
               >
                 Instagram
               </a>
@@ -154,7 +154,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="py-8 border-t border-[#1A1A1A]">
-          <p className="font-body text-xs text-[#888888] text-center tracking-wide">
+          <p className="font-display text-xs text-[#888888] text-center tracking-wide">
             &copy; {currentYear} International Styles Barber Shop. All rights reserved.
           </p>
         </div>
