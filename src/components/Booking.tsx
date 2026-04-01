@@ -8,6 +8,7 @@ export default function Booking() {
   const [widgetError, setWidgetError] = useState(false);
 
   const widgetUrl = process.env.NEXT_PUBLIC_BOOKSY_WIDGET_URL || "";
+  const widgetLinkLabel = `Open ${BUSINESS.name} on Booksy`;
   const profileUrl =
     process.env.NEXT_PUBLIC_BOOKSY_PROFILE_URL ||
     "https://booksy.com/en-us/7016_international-styles-barbershop_barber-shop_28561_jersey-city";
@@ -18,19 +19,44 @@ export default function Booking() {
       return;
     }
 
+    const labelWidgetLinks = () => {
+      const widgetLinks = document.querySelectorAll<HTMLAnchorElement>(
+        "a.booksy-business-link"
+      );
+
+      widgetLinks.forEach((link) => {
+        link.setAttribute("aria-label", widgetLinkLabel);
+        link.setAttribute("title", widgetLinkLabel);
+      });
+    };
+
+    const observer = new MutationObserver(() => {
+      labelWidgetLinks();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    labelWidgetLinks();
+
     const script = document.createElement("script");
     script.src = widgetUrl;
     script.async = true;
-    script.onload = () => setWidgetLoaded(true);
-    script.onerror = () => setWidgetError(true);
+    script.onload = () => {
+      labelWidgetLinks();
+      setWidgetLoaded(true);
+    };
+    script.onerror = () => {
+      observer.disconnect();
+      setWidgetError(true);
+    };
     document.body.appendChild(script);
 
     return () => {
+      observer.disconnect();
       if (script.parentNode) {
         script.parentNode.removeChild(script);
       }
     };
-  }, [widgetUrl]);
+  }, [widgetLinkLabel, widgetUrl]);
 
   return (
     <section id="booking" className="py-28 md:py-36 bg-[#0A0A0A]">

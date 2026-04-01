@@ -35,6 +35,8 @@ export default function Footer() {
   return (
     <footer className="bg-[#0D0D0D] border-t border-[#1A1A1A]">
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
+        <h2 className="sr-only">Site Footer</h2>
+
         {/* Main Footer Content */}
         <div className="py-16 grid md:grid-cols-3 gap-12">
           {/* Brand Column */}
