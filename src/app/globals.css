@@ -12,7 +12,7 @@
 html,
 body,
 html * {
-  font-family: var(--font-display), 'Cormorant Garamond', serif;
+  font-family: var(--font-display), 'Cormorant Garamond';
 }
 
 html {

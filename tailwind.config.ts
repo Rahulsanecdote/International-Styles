@@ -21,7 +21,7 @@ const config: Config = {
         "gold-dark": "#A07830",
       },
       fontFamily: {
-        display: ["var(--font-display)", "serif"],
+        display: ["var(--font-display)", "Cormorant Garamond"],
       },
       keyframes: {
         "fade-up": {
