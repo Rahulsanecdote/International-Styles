@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import type { Review } from "@/lib/reviews";
 
 interface ReviewsCarouselProps {
@@ -8,10 +7,10 @@ interface ReviewsCarouselProps {
 }
 
 export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
-  const [isPaused, setIsPaused] = useState(false);
+  const marqueeReviews = reviews.slice(0, 18);
 
   // Duplicate once (2x) for seamless CSS loop — down from 3x with rAF
-  const duplicatedReviews = [...reviews, ...reviews];
+  const duplicatedReviews = [...marqueeReviews, ...marqueeReviews];
 
   if (reviews.length === 0) {
     return (
@@ -21,8 +20,11 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
     );
   }
 
-  // Speed scales with number of reviews so each card gets equal screen time
-  const durationSeconds = reviews.length * 8;
+  // Keep the homepage marquee readable and moving at a consistent pace.
+  const durationSeconds = Math.max(
+    45,
+    Math.min(marqueeReviews.length * 5, 90)
+  );
 
   return (
     <div className="relative overflow-hidden">
@@ -41,11 +43,8 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
       {/* Scrolling Container — pure CSS, GPU-accelerated */}
       <div
         className="flex gap-6 py-8"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
         style={{
           animation: `marquee ${durationSeconds}s linear infinite`,
-          animationPlayState: isPaused ? "paused" : "running",
           willChange: "transform",
         }}
       >
@@ -113,13 +112,6 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
           </div>
         ))}
       </div>
-
-      {/* Pause Indicator */}
-      {isPaused && (
-        <div className="absolute bottom-2 right-2 bg-[#C9A84C] text-[#0A0A0A] px-3 py-1 text-xs font-display uppercase tracking-wider">
-          Paused
-        </div>
-      )}
     </div>
   );
 }
