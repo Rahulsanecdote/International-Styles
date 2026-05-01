@@ -34,7 +34,7 @@ export default function Nav() {
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <a href="/" className="flex items-center space-x-3 group">
             <div className="relative w-9 h-9 transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/logo-icon.png"
@@ -47,7 +47,7 @@ export default function Nav() {
             <span className="font-display text-xs tracking-[0.15em] uppercase text-[#F5F5F5] hidden sm:block">
               International Styles
             </span>
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center space-x-12">
