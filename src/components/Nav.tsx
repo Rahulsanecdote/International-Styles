@@ -91,7 +91,7 @@ export default function Nav() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`md:hidden fixed inset-0 top-20 bg-[#0A0A0A]/98 backdrop-blur-lg transition-all duration-500 ${
+        className={`md:hidden fixed inset-0 top-20 bg-[#0A0A0A] z-[9999] transition-all duration-500 ${
           isMobileMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
