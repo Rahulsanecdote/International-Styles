@@ -36,7 +36,7 @@ export default function Hero() {
           </div>
 
           {/* Subheading */}
-          <p className="font-display text-[11px] md:text-[12px] tracking-[0.45em] uppercase text-[#888888] mb-6 opacity-0 animate-fade-up animation-delay-2">
+          <p className="font-display text-[11px] md:text-[12px] tracking-[0.45em] uppercase text-[#F5F5F5] mb-6 opacity-0 animate-fade-up animation-delay-2">
             Barber Shop
           </p>
 
@@ -62,10 +62,10 @@ export default function Hero() {
         {/* Contact Stack */}
         <div className="flex justify-center pt-10 opacity-0 animate-fade-up animation-delay-4 md:pt-12">
           <div className="flex flex-col items-center text-center">
-            <span className="font-display text-[9px] tracking-[0.48em] uppercase text-[#C9A84C]">
+            <span className="font-display text-[9px] tracking-[0.48em] uppercase text-[#F5F5F5]">
               Connect
             </span>
-            <div className="mt-3 h-10 w-px bg-gradient-to-b from-[#C9A84C] to-[#C9A84C]/10 md:h-12" />
+            <div className="mt-3 h-10 w-px bg-[#F5F5F5]/60 md:h-12" />
 
             <div className="mt-6 space-y-3 md:space-y-4">
               <a
