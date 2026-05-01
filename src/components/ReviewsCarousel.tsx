@@ -51,7 +51,7 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
         {duplicatedReviews.map((review, index) => (
           <div
             key={`${review.id}-${index}`}
-            className="flex-shrink-0 w-[380px] bg-[#111111] border border-[#222222] p-8 transition-all hover:border-[#C9A84C]/50"
+            className="flex-shrink-0 w-[260px] md:w-[380px] bg-[#111111] border border-[#222222] p-6 md:p-8 transition-all hover:border-[#C9A84C]/50"
           >
             {/* Rating Stars */}
             <div className="flex gap-1 mb-4">
