@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide Booksy floating widget button */
+[class*="booksy-widget-btn"],
+[class*="bks-widget-btn"],
+[id*="booksy-widget-btn"],
+.booksy-book-now,
+iframe[src*="booksy.com"][style*="position: fixed"] {
+  display: none !important;
+}
+
 /* === BASE RESET === */
 * {
   margin: 0;
