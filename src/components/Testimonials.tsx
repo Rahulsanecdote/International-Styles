@@ -15,39 +15,38 @@ export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // TODO: Replace with actual customer testimonials
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      name: "Michael Torres",
-      service: "Precision Fade",
+      name: "Sean E.",
+      service: "Verified Booksy Review",
       rating: 5,
-      text: "Best barbershop in Jersey City. The attention to detail is unmatched. Been coming here for 5 years and never disappointed.",
-      date: "2 weeks ago",
+      text: "Richie and Ola are the best barbers in Jersey City!!!",
+      date: "4 weeks ago",
     },
     {
       id: 2,
-      name: "David Chen",
-      service: "Classic Cut & Beard Trim",
+      name: "Mantilla A.",
+      service: "Verified Booksy Review",
       rating: 5,
-      text: "Professional service in a great atmosphere. The barbers really know their craft. Highly recommend for anyone looking for quality work.",
-      date: "1 month ago",
+      text: "It's my second visit and I love the place. Highly recommend Vicky, she is super sweet and very talented.",
+      date: "6 weeks ago",
     },
     {
       id: 3,
-      name: "James Rodriguez",
-      service: "Straight Razor Shave",
+      name: "Nicolas H.",
+      service: "Verified Booksy Review",
       rating: 5,
-      text: "Traditional barbering at its finest. The straight razor shave is an experience you won't find anywhere else. True professionals.",
-      date: "3 weeks ago",
+      text: "Rich is a Master Barber. Always professional and good vibes at the shop.",
+      date: "5 months ago",
     },
     {
       id: 4,
-      name: "Robert Kim",
-      service: "Haircut",
+      name: "Isaac G.",
+      service: "Verified Booksy Review",
       rating: 5,
-      text: "Clean shop, skilled barbers, and great conversation. This is my go-to spot for the past 3 years. Always leave looking sharp.",
-      date: "1 week ago",
+      text: "Always a smooth and chill experience. Best barbers in the area.",
+      date: "7 months ago",
     },
   ];
 
