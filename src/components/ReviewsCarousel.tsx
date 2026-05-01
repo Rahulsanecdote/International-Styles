@@ -20,10 +20,9 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
     );
   }
 
-  // Keep the homepage marquee readable and moving at a consistent pace.
   const durationSeconds = Math.max(
-    45,
-    Math.min(marqueeReviews.length * 5, 90)
+    25,
+    Math.min(marqueeReviews.length * 3, 50)
   );
 
   return (
@@ -34,6 +33,11 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
         }
+        @media (max-width: 768px) {
+          .marquee-track {
+            animation-duration: ${Math.round(durationSeconds * 0.5)}s !important;
+          }
+        }
       `}</style>
 
       {/* Gradient Overlays */}
@@ -42,7 +46,7 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
 
       {/* Scrolling Container — pure CSS, GPU-accelerated */}
       <div
-        className="flex gap-6 py-8"
+        className="marquee-track flex gap-6 py-8"
         style={{
           animation: `marquee ${durationSeconds}s linear infinite`,
           willChange: "transform",
