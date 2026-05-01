@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 /* Hide Booksy floating widget button */
-.booksy-widget-button {
+.booksy-widget-button,
+.booksy-widget-container-dialog {
   display: none !important;
 }
 
