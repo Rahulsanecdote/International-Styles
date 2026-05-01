@@ -75,7 +75,7 @@ export default function Booking() {
         </h2>
 
         {/* Subtitle */}
-        <p className="font-display text-sm text-[#F5F5F5] tracking-wide mb-12 max-w-2xl reveal">
+        <p className="font-display text-sm text-[#F5F5F5] tracking-wide mb-8 max-w-2xl reveal">
           Schedule your appointment online. Select your preferred service and time below.
           <br />
           <span className="text-[#C9A84C]">Walk-ins welcome</span> or call{" "}
@@ -83,6 +83,18 @@ export default function Booking() {
             {BUSINESS.phoneDot}
           </a>
         </p>
+
+        {/* Booksy CTA */}
+        <div className="mb-12 reveal">
+          <a
+            href={profileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block font-display text-[11px] tracking-[0.3em] uppercase px-10 py-4 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500"
+          >
+            Booksy
+          </a>
+        </div>
 
         {/* Booksy Widget */}
         <div className="reveal">
