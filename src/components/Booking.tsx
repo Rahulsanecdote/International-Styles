@@ -33,7 +33,12 @@ export default function Booking() {
     const hideFloatingButton = () => {
       document.querySelectorAll<HTMLElement>("body > *").forEach((el) => {
         const style = window.getComputedStyle(el);
-        if (style.position === "fixed" && !el.id.includes("booksy-widget-container")) {
+        const html = el.innerHTML.toLowerCase();
+        const isBooksy =
+          html.includes("booksy") ||
+          el.id.toLowerCase().includes("booksy") ||
+          (el.className && el.className.toString().toLowerCase().includes("booksy"));
+        if (style.position === "fixed" && isBooksy) {
           el.style.setProperty("display", "none", "important");
         }
       });
