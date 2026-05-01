@@ -31,13 +31,21 @@ export default function Booking() {
     };
 
     const hideFloatingButton = () => {
-      document.querySelectorAll<HTMLElement>("body > div, body > a").forEach((el) => {
+      document.querySelectorAll<HTMLElement>("body > *").forEach((el) => {
         const style = window.getComputedStyle(el);
-        if (style.position === "fixed" && el.id !== "booksy-widget-container") {
+        if (style.position === "fixed" && !el.id.includes("booksy-widget-container")) {
           el.style.setProperty("display", "none", "important");
         }
       });
     };
+
+    // Poll for 10 seconds to catch the button whenever Booksy injects it
+    let polls = 0;
+    const pollInterval = setInterval(() => {
+      hideFloatingButton();
+      polls++;
+      if (polls > 20) clearInterval(pollInterval);
+    }, 500);
 
     const observer = new MutationObserver(() => {
       labelWidgetLinks();
@@ -62,6 +70,7 @@ export default function Booking() {
 
     return () => {
       observer.disconnect();
+      clearInterval(pollInterval);
       if (script.parentNode) {
         script.parentNode.removeChild(script);
       }
