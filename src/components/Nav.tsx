@@ -18,9 +18,9 @@ export default function Nav() {
   }, []);
 
   const navLinks = [
-    { href: "#services", label: "Services" },
-    { href: "#hours", label: "Hours" },
-    { href: "#booking", label: "Book Now" },
+    { href: "#services", label: "Services", external: false },
+    { href: "#hours", label: "Hours", external: false },
+    { href: "https://booksy.com/en-us/7016_international-styles-barbershop_barber-shop_28561_jersey-city", label: "Book Now", external: true },
   ];
 
   return (
@@ -55,6 +55,7 @@ export default function Nav() {
               <li key={link.href}>
                 <Link
                   href={link.href}
+                  {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="font-display text-[11px] tracking-[0.3em] uppercase text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
                 >
                   {link.label}
@@ -109,6 +110,7 @@ export default function Nav() {
             >
               <Link
                 href={link.href}
+                {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="font-display text-2xl tracking-[0.3em] uppercase text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
               >

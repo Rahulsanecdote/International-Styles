@@ -52,7 +52,9 @@ export default function Hero() {
 
           {/* CTA Button */}
           <Link
-            href="#booking"
+            href={booksyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block font-display text-[11px] tracking-[0.3em] uppercase px-10 py-4 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all duration-500 opacity-0 animate-fade-up animation-delay-4"
           >
             Book Appointment
