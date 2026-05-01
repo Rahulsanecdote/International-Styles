@@ -17,7 +17,7 @@ export default function Hero() {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/background.jpg')" }}
       />
-      <div className="absolute inset-0 bg-[#0A0A0A]/75" />
+      <div className="absolute inset-0 bg-[#0A0A0A]/50" />
 
       {/* Radial Gold Glow Background */}
       <div className="absolute inset-0 bg-gradient-radial from-[#C9A84C]/5 via-transparent to-transparent opacity-30" />
