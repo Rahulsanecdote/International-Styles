@@ -70,19 +70,19 @@ export default function Hero() {
             <div className="mt-6 space-y-3 md:space-y-4">
               <a
                 href={`tel:${BUSINESS.phoneTel}`}
-                className="block font-display text-[clamp(1.6rem,2vw,2.2rem)] font-light text-[#9A9A9A] hover:text-[#C9A84C] transition-colors duration-300"
+                className="block font-display text-[clamp(1.6rem,2vw,2.2rem)] font-light text-[#F5F5F5] hover:text-[#C9A84C] transition-colors duration-300"
               >
                 {BUSINESS.phoneDot}
               </a>
               <a
                 href={`mailto:${BUSINESS.email}`}
-                className="block font-display text-[clamp(1.6rem,2vw,2.2rem)] font-light text-[#9A9A9A] hover:text-[#C9A84C] transition-colors duration-300"
+                className="block font-display text-[clamp(1.6rem,2vw,2.2rem)] font-light text-[#F5F5F5] hover:text-[#C9A84C] transition-colors duration-300"
               >
                 {BUSINESS.email}
               </a>
             </div>
 
-            <div className="mt-7 flex items-center gap-8 text-[#9A9A9A]">
+            <div className="mt-7 flex items-center gap-8 text-[#F5F5F5]">
               <a
                 href={instagramUrl}
                 target="_blank"
