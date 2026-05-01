@@ -30,8 +30,18 @@ export default function Booking() {
       });
     };
 
+    const hideFloatingButton = () => {
+      document.querySelectorAll<HTMLElement>("body > div, body > a").forEach((el) => {
+        const style = window.getComputedStyle(el);
+        if (style.position === "fixed" && el.id !== "booksy-widget-container") {
+          el.style.setProperty("display", "none", "important");
+        }
+      });
+    };
+
     const observer = new MutationObserver(() => {
       labelWidgetLinks();
+      hideFloatingButton();
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
