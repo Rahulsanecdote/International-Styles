@@ -12,6 +12,18 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/background.jpg"
+          alt=""
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className="absolute inset-0 bg-[#0A0A0A]/75" />
+      </div>
+
       {/* Radial Gold Glow Background */}
       <div className="absolute inset-0 bg-gradient-radial from-[#C9A84C]/5 via-transparent to-transparent opacity-30" />
 
