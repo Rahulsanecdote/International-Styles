@@ -24,8 +24,9 @@ export default function Nav() {
   ];
 
   return (
+    <>
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
         isScrolled
           ? "bg-[#0A0A0A]/95 backdrop-blur-md border-b border-[#222222]"
           : "bg-transparent"
@@ -89,9 +90,11 @@ export default function Nav() {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+    </nav>
+
+      {/* Mobile Menu Overlay — outside <nav> to avoid stacking context inheritance */}
       <div
-        className={`md:hidden fixed inset-0 top-20 bg-[#0A0A0A] z-[9999] transition-all duration-500 ${
+        className={`md:hidden fixed inset-0 top-20 bg-[#0A0A0A] z-[99] transition-opacity duration-300 ${
           isMobileMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -120,6 +123,6 @@ export default function Nav() {
           ))}
         </ul>
       </div>
-    </nav>
+    </>
   );
 }
