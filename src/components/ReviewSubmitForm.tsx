@@ -69,7 +69,7 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
         <h3 className="font-display text-3xl md:text-4xl font-light italic text-[#F5F5F5] mb-3">
           Share Your Experience
         </h3>
-        <p className="text-[#999999] font-display">
+        <p className="text-[#F5F5F5] font-display">
           Your feedback helps us continue delivering exceptional service
         </p>
       </div>
@@ -106,7 +106,7 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
           ))}
         </div>
         {formData.rating > 0 && (
-          <p className="text-sm text-[#999999] font-display">
+          <p className="text-sm text-[#F5F5F5] font-display">
             {formData.rating === 5 && "Exceptional!"}
             {formData.rating === 4 && "Great!"}
             {formData.rating === 3 && "Good"}
@@ -135,7 +135,7 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
       {/* Email Input (Optional) */}
       <div>
         <label htmlFor="email" className="block font-display text-sm uppercase tracking-wider text-[#C9A84C] mb-2">
-          Email <span className="text-[#666666] text-xs normal-case">(Optional)</span>
+          Email <span className="text-[#F5F5F5] text-xs normal-case">(Optional)</span>
         </label>
         <input
           type="email"
@@ -163,7 +163,7 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
           minLength={10}
           maxLength={1000}
         />
-        <p className="text-xs text-[#666666] mt-1 font-display">
+        <p className="text-xs text-[#F5F5F5] mt-1 font-display">
           {formData.text.length}/1000 characters (minimum 10)
         </p>
       </div>

@@ -75,7 +75,7 @@ export default function Booking() {
         </h2>
 
         {/* Subtitle */}
-        <p className="font-display text-sm text-[#888888] tracking-wide mb-12 max-w-2xl reveal">
+        <p className="font-display text-sm text-[#F5F5F5] tracking-wide mb-12 max-w-2xl reveal">
           Schedule your appointment online. Select your preferred service and time below.
           <br />
           <span className="text-[#C9A84C]">Walk-ins welcome</span> or call{" "}
@@ -91,7 +91,7 @@ export default function Booking() {
               <p className="text-[#C9A84C] font-display text-2xl font-light italic mb-4">
                 Book on Booksy
               </p>
-              <p className="text-[#888888] font-display text-sm tracking-wide mb-8">
+              <p className="text-[#F5F5F5] font-display text-sm tracking-wide mb-8">
                 Schedule your appointment directly through our Booksy page
               </p>
               <a
@@ -102,7 +102,7 @@ export default function Booking() {
               >
                 Book on Booksy
               </a>
-              <p className="text-[#888888] font-display text-sm tracking-wide mt-6">
+              <p className="text-[#F5F5F5] font-display text-sm tracking-wide mt-6">
                 or call{" "}
                 <a href={`tel:${BUSINESS.phoneTel}`} className="text-[#C9A84C] hover:text-[#E8C96A] transition-colors duration-300">
                   {BUSINESS.phoneDot}
@@ -115,7 +115,7 @@ export default function Booking() {
               {!widgetLoaded && (
                 <div className="bg-[#111111] border border-[#222222] p-12 text-center">
                   <div className="inline-block w-8 h-8 border-2 border-[#C9A84C] border-t-transparent animate-spin mb-4" />
-                  <p className="text-[#888888] font-display text-sm tracking-wide">
+                  <p className="text-[#F5F5F5] font-display text-sm tracking-wide">
                     Loading booking widget...
                   </p>
                 </div>
@@ -133,7 +133,7 @@ export default function Booking() {
               <h3 className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C] mb-3">
                 Cancellation Policy
               </h3>
-              <p className="font-display text-sm text-[#888888] tracking-wide">
+              <p className="font-display text-sm text-[#F5F5F5] tracking-wide">
                 Please provide 24 hours notice for cancellations
               </p>
             </div>
@@ -142,7 +142,7 @@ export default function Booking() {
               <h3 className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C] mb-3">
                 Walk-Ins
               </h3>
-              <p className="font-display text-sm text-[#888888] tracking-wide">
+              <p className="font-display text-sm text-[#F5F5F5] tracking-wide">
                 Always welcome based on availability
               </p>
             </div>
@@ -151,7 +151,7 @@ export default function Booking() {
               <h3 className="font-display text-[10px] tracking-[0.4em] uppercase text-[#C9A84C] mb-3">
                 Payment
               </h3>
-              <p className="font-display text-sm text-[#888888] tracking-wide">
+              <p className="font-display text-sm text-[#F5F5F5] tracking-wide">
                 Cash, card, and digital payments accepted
               </p>
             </div>

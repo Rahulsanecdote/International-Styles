@@ -54,7 +54,7 @@ export default function Hours() {
                   className={`flex justify-between items-center py-3 border-b border-[#1A1A1A] transition-all duration-300 ${
                     currentDay === item.dayIndex
                       ? "text-[#C9A84C] border-[#C9A84C]/30"
-                      : "text-[#888888]"
+                      : "text-[#F5F5F5]"
                   }`}
                 >
                   <span className="font-display text-sm tracking-wide">
@@ -89,7 +89,7 @@ export default function Hours() {
                 <div className="space-y-4 mb-10">
                   <a
                     href={`tel:${BUSINESS.phoneTel}`}
-                    className="flex items-center gap-3 text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
+                    className="flex items-center gap-3 text-[#F5F5F5] hover:text-[#C9A84C] transition-colors duration-300"
                   >
                     <span className="font-display text-sm tracking-wide">
                       {BUSINESS.phoneDot}
@@ -98,7 +98,7 @@ export default function Hours() {
 
                   <a
                     href={`mailto:${BUSINESS.email}`}
-                    className="flex items-center gap-3 text-[#888888] hover:text-[#C9A84C] transition-colors duration-300"
+                    className="flex items-center gap-3 text-[#F5F5F5] hover:text-[#C9A84C] transition-colors duration-300"
                   >
                     <span className="font-display text-sm tracking-wide">
                       {BUSINESS.email}
@@ -113,7 +113,7 @@ export default function Hours() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-4 group"
                 >
-                  <span className="font-display text-[11px] tracking-[0.3em] uppercase text-[#888888] group-hover:text-[#C9A84C] transition-colors duration-300">
+                  <span className="font-display text-[11px] tracking-[0.3em] uppercase text-[#F5F5F5] group-hover:text-[#C9A84C] transition-colors duration-300">
                     Get Directions
                   </span>
                   <div className="w-0 group-hover:w-12 h-px bg-[#C9A84C] transition-all duration-500" />

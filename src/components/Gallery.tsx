@@ -52,7 +52,7 @@ export default function Gallery() {
         </h2>
 
         {/* Subtitle */}
-        <p className="font-display text-sm text-[#888888] tracking-wide mb-10 max-w-2xl reveal">
+        <p className="font-display text-sm text-[#F5F5F5] tracking-wide mb-10 max-w-2xl reveal">
           A showcase of our craft. Every cut tells a story of precision, style, and tradition.
         </p>
 

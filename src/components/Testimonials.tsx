@@ -133,11 +133,11 @@ export default function Testimonials() {
                       <p className="font-display text-sm text-[#F5F5F5] tracking-wide mb-1">
                         {testimonial.name}
                       </p>
-                      <p className="font-display text-xs text-[#888888] tracking-wide">
+                      <p className="font-display text-xs text-[#F5F5F5] tracking-wide">
                         {testimonial.service}
                       </p>
                     </div>
-                    <p className="font-display text-xs text-[#666666] tracking-wide">
+                    <p className="font-display text-xs text-[#F5F5F5] tracking-wide">
                       {testimonial.date}
                     </p>
                   </div>
@@ -184,7 +184,7 @@ export default function Testimonials() {
 
         {/* Review CTA */}
         <div className="mt-16 text-center reveal">
-          <p className="font-display text-sm text-[#888888] tracking-wide mb-6">
+          <p className="font-display text-sm text-[#F5F5F5] tracking-wide mb-6">
             Had a great experience? Share your story
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

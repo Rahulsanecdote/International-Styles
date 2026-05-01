@@ -91,7 +91,7 @@ export default function Reviews() {
                     ))}
                   </div>
                 </div>
-                <p className="text-[#8A8A8A] font-display text-sm">
+                <p className="text-[#F5F5F5] font-display text-sm">
                   Based on {stats.total} review{stats.total !== 1 ? "s" : ""}
                 </p>
               </div>
@@ -101,13 +101,13 @@ export default function Reviews() {
 
         {/* Reviews Carousel */}
         {hasError ? (
-          <p className="text-center text-[#8A8A8A] font-display py-12">
+          <p className="text-center text-[#F5F5F5] font-display py-12">
             Unable to load reviews. Please try again later.
           </p>
         ) : isLoading ? (
           <div className="text-center py-12">
             <div className="inline-block w-8 h-8 border-2 border-[#C9A84C] border-t-transparent rounded-full animate-spin" />
-            <p className="text-[#8A8A8A] font-display mt-4">Loading reviews...</p>
+            <p className="text-[#F5F5F5] font-display mt-4">Loading reviews...</p>
           </div>
         ) : (
           <ReviewsCarousel reviews={reviews} />

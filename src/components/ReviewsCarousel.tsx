@@ -15,7 +15,7 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
   if (reviews.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-[#8A8A8A] font-display">No reviews available yet.</p>
+        <p className="text-[#F5F5F5] font-display">No reviews available yet.</p>
       </div>
     );
   }
@@ -73,7 +73,7 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
             </div>
 
             {/* Review Text */}
-            <p className="text-[#CCCCCC] font-display text-base leading-relaxed mb-6 line-clamp-4">
+            <p className="text-[#F5F5F5] font-display text-base leading-relaxed mb-6 line-clamp-4">
               &ldquo;{review.text}&rdquo;
             </p>
 
@@ -83,7 +83,7 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
                 <p className="font-display text-lg text-[#F5F5F5] italic">
                   {review.author}
                 </p>
-                <p className="text-xs text-[#8A8A8A] uppercase tracking-wider font-display mt-1">
+                <p className="text-xs text-[#F5F5F5] uppercase tracking-wider font-display mt-1">
                   {review.source === "google" && "Google Reviews"}
                   {review.source === "yelp" && "Yelp"}
                   {review.source === "booksy" && "Booksy"}
