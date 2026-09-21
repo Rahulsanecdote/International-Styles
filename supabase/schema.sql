@@ -58,11 +58,28 @@ CREATE POLICY "Anyone can submit reviews" ON reviews
 
 -- ---------------------------------------------------------------------------
 -- Column privileges: the submitter's email must never be readable with the
--- public anon key. The app selects an explicit column list (see
--- fetchSupabaseReviews) rather than "*", so this revoke does not break reads.
--- Applied via migration "revoke_anon_access_to_review_email".
+-- public anon key.
+--
+-- A column-level "REVOKE SELECT (email)" does NOT work here: in Postgres a
+-- table-level SELECT grant implies every column, and Supabase grants anon and
+-- authenticated full table privileges by default. The table grant has to be
+-- dropped and replaced with an explicit column list. The app selects exactly
+-- these columns (see fetchSupabaseReviews), so reads keep working.
+--
+-- email stays insertable but not selectable: write-only from the public key.
+-- Applied via migration "narrow_anon_grants_on_reviews".
 -- ---------------------------------------------------------------------------
-REVOKE SELECT (email) ON reviews FROM anon;
+REVOKE SELECT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER ON reviews FROM anon;
+GRANT SELECT (id, author, rating, text, source, verified, created_at)
+  ON reviews TO anon;
+
+REVOKE INSERT ON reviews FROM anon;
+GRANT INSERT (author, email, rating, text, source, verified)
+  ON reviews TO anon;
+
+REVOKE SELECT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER ON reviews FROM authenticated;
+GRANT SELECT (id, author, rating, text, source, verified, created_at)
+  ON reviews TO authenticated;
 
 -- ---------------------------------------------------------------------------
 -- Moderation helpers. Submissions land with verified = false and are invisible
@@ -76,8 +93,15 @@ CREATE OR REPLACE VIEW pending_reviews AS
   WHERE verified = false
   ORDER BY created_at DESC;
 
-REVOKE ALL ON pending_reviews FROM anon;
-GRANT SELECT ON pending_reviews TO authenticated, service_role;
+-- A view defaults to SECURITY DEFINER semantics: it runs with the creator's
+-- rights and bypasses RLS for anyone allowed to read it. security_invoker
+-- makes it respect the querying role instead. Supabase's linter flags the
+-- default as an ERROR, and granting it to `authenticated` would have exposed
+-- pending submissions and their emails to any signed-in user.
+ALTER VIEW pending_reviews SET (security_invoker = on);
+
+REVOKE ALL ON pending_reviews FROM anon, authenticated;
+GRANT SELECT ON pending_reviews TO service_role;
 
 CREATE OR REPLACE FUNCTION approve_review(review_id uuid)
 RETURNS TABLE (id uuid, author text, verified boolean)
@@ -100,20 +124,42 @@ AS $$
   RETURNING reviews.id, reviews.author;
 $$;
 
--- SECURITY DEFINER bypasses RLS, so these must not be callable by anon.
-REVOKE ALL ON FUNCTION approve_review(uuid) FROM PUBLIC, anon;
-REVOKE ALL ON FUNCTION reject_review(uuid) FROM PUBLIC, anon;
-GRANT EXECUTE ON FUNCTION approve_review(uuid) TO authenticated, service_role;
-GRANT EXECUTE ON FUNCTION reject_review(uuid) TO authenticated, service_role;
+-- SECURITY DEFINER bypasses RLS, so these are restricted to service_role.
+-- Moderation runs from the Supabase SQL editor / dashboard, which connects as
+-- postgres or service_role; `authenticated` has no reason to reach them.
+REVOKE ALL ON FUNCTION approve_review(uuid) FROM PUBLIC, anon, authenticated;
+REVOKE ALL ON FUNCTION reject_review(uuid) FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION approve_review(uuid) TO service_role;
+GRANT EXECUTE ON FUNCTION reject_review(uuid) TO service_role;
+
+-- ---------------------------------------------------------------------------
+-- HOW TO MODERATE (Supabase dashboard -> SQL Editor)
+--
+--   -- see what is waiting
+--   SELECT * FROM pending_reviews;
+--
+--   -- publish one
+--   SELECT * FROM approve_review('<id from above>');
+--
+--   -- discard one (only works while it is still unverified)
+--   SELECT * FROM reject_review('<id from above>');
+--
+-- The table editor's `verified` toggle does the same thing by hand.
+-- ---------------------------------------------------------------------------
 
 -- Create function to update the updated_at timestamp
+-- search_path is pinned so a caller-controlled search_path cannot influence
+-- what this resolves. Applied via migration "harden_moderation_helpers".
 CREATE OR REPLACE FUNCTION update_updated_at_column()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SET search_path = public, pg_temp
+AS $$
 BEGIN
   NEW.updated_at = TIMEZONE('utc', NOW());
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$;
 
 -- Create trigger to automatically update updated_at
 CREATE TRIGGER update_reviews_updated_at
@@ -121,7 +167,14 @@ CREATE TRIGGER update_reviews_updated_at
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
 
--- Insert some sample reviews for testing (optional)
+-- ---------------------------------------------------------------------------
+-- WARNING: placeholder testimonials, not real customers.
+--
+-- These three rows are seeded with verified = true, so they render on the live
+-- site as though they were genuine customer reviews. They are currently the
+-- ONLY reviews the site displays. Delete them once real reviews exist, and do
+-- not re-run this block against production.
+-- ---------------------------------------------------------------------------
 INSERT INTO reviews (author, rating, text, source, verified) VALUES
   ('Michael R.', 5, 'Best barbershop in Jersey City! The attention to detail is incredible and the atmosphere is top-notch.', 'website', true),
   ('David L.', 5, 'Been coming here for years. Consistent quality, professional service, and always leave looking sharp.', 'website', true),
