@@ -30,7 +30,9 @@ ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
 -- Website submissions are inserted with verified = false and stay invisible to
 -- the public until a moderator sets verified = true. Do not add
 -- "OR source = 'website'" here — that publishes unmoderated user text.
--- NOTE: Run DROP/CREATE statements below in the Supabase SQL editor to apply RLS changes.
+-- APPLIED to the live database via migration
+-- "restrict_reviews_rls_to_verified_only". This file is the source of record;
+-- it is not run automatically, so any change here needs a matching migration.
 -- DROP POLICY IF EXISTS "Anyone can read reviews" ON reviews;
 -- DROP POLICY IF EXISTS "Anyone can read verified reviews" ON reviews;
 CREATE POLICY "Anyone can read verified reviews" ON reviews
@@ -48,7 +50,61 @@ CREATE POLICY "Anyone can submit reviews" ON reviews
     AND rating >= 1 AND rating <= 5
     AND verified = false
     AND source = 'website'
+    AND (email IS NULL OR length(email) <= 254)
   );
+
+-- No UPDATE or DELETE policy exists, so the public anon key cannot modify or
+-- remove rows. Moderation goes through the SECURITY DEFINER helpers below.
+
+-- ---------------------------------------------------------------------------
+-- Column privileges: the submitter's email must never be readable with the
+-- public anon key. The app selects an explicit column list (see
+-- fetchSupabaseReviews) rather than "*", so this revoke does not break reads.
+-- Applied via migration "revoke_anon_access_to_review_email".
+-- ---------------------------------------------------------------------------
+REVOKE SELECT (email) ON reviews FROM anon;
+
+-- ---------------------------------------------------------------------------
+-- Moderation helpers. Submissions land with verified = false and are invisible
+-- to the public, so without these a review could never appear at all.
+-- Run from the Supabase SQL editor. Applied via migration
+-- "add_review_moderation_helpers".
+-- ---------------------------------------------------------------------------
+CREATE OR REPLACE VIEW pending_reviews AS
+  SELECT id, author, rating, text, email, created_at
+  FROM reviews
+  WHERE verified = false
+  ORDER BY created_at DESC;
+
+REVOKE ALL ON pending_reviews FROM anon;
+GRANT SELECT ON pending_reviews TO authenticated, service_role;
+
+CREATE OR REPLACE FUNCTION approve_review(review_id uuid)
+RETURNS TABLE (id uuid, author text, verified boolean)
+LANGUAGE sql
+SECURITY DEFINER
+SET search_path = public, pg_temp
+AS $$
+  UPDATE reviews SET verified = true, updated_at = timezone('utc', now())
+  WHERE reviews.id = review_id
+  RETURNING reviews.id, reviews.author, reviews.verified;
+$$;
+
+CREATE OR REPLACE FUNCTION reject_review(review_id uuid)
+RETURNS TABLE (id uuid, author text)
+LANGUAGE sql
+SECURITY DEFINER
+SET search_path = public, pg_temp
+AS $$
+  DELETE FROM reviews WHERE reviews.id = review_id AND reviews.verified = false
+  RETURNING reviews.id, reviews.author;
+$$;
+
+-- SECURITY DEFINER bypasses RLS, so these must not be callable by anon.
+REVOKE ALL ON FUNCTION approve_review(uuid) FROM PUBLIC, anon;
+REVOKE ALL ON FUNCTION reject_review(uuid) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION approve_review(uuid) TO authenticated, service_role;
+GRANT EXECUTE ON FUNCTION reject_review(uuid) TO authenticated, service_role;
 
 -- Create function to update the updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()
