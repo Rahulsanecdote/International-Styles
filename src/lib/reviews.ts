@@ -460,9 +460,11 @@ async function fetchSupabaseReviews(): Promise<Review[]> {
   try {
     // Only verified reviews are ever surfaced publicly. Submissions land with
     // verified = false and stay hidden until a moderator flips the flag.
+    // Columns are listed explicitly rather than "*" so the submitter's email is
+    // never pulled into a public response; anon also has no SELECT grant on it.
     const { data, error } = await supabase
       .from("reviews")
-      .select("*")
+      .select("id, author, rating, text, source, verified, created_at")
       .eq("verified", true)
       .order("created_at", { ascending: false });
 
