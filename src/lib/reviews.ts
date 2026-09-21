@@ -104,6 +104,10 @@ const DEFAULT_BOOKSY_PROFILE_URL =
 const DEFAULT_BOOKSY_PUBLIC_API_KEY = "web-e3d812bf-d7a2-445d-ab38-55589ae6a121";
 const BOOKSY_API_PAGE_SIZE = 1000;
 const BOOKSY_API_VERSION_CANDIDATES = [2, 3, 1];
+// Page count is derived from upstream-reported totals. A small reviews_per_page
+// paired with a large reviews_count would otherwise drive an unbounded run of
+// sequential 5s-timeout fetches and hang the request.
+const BOOKSY_API_MAX_PAGES = 10;
 const BOOKSY_REQUEST_HEADERS = {
   Accept: "text/html,application/xhtml+xml",
   "Accept-Language": "en-US,en;q=0.9",
@@ -411,7 +415,10 @@ async function fetchBooksyApiReviews(options: {
         firstPage.reviews?.length ?? 0
       );
       const perPage = Math.max(firstPage.reviews_per_page || 0, 1);
-      const totalPages = Math.max(Math.ceil(totalExpected / perPage), 1);
+      const totalPages = Math.min(
+        Math.max(Math.ceil(totalExpected / perPage), 1),
+        BOOKSY_API_MAX_PAGES
+      );
       const pages: BooksyApiResponse[] = [firstPage];
 
       for (let page = 2; page <= totalPages; page += 1) {
@@ -451,9 +458,12 @@ async function fetchSupabaseReviews(): Promise<Review[]> {
   }
 
   try {
+    // Only verified reviews are ever surfaced publicly. Submissions land with
+    // verified = false and stay hidden until a moderator flips the flag.
     const { data, error } = await supabase
       .from("reviews")
       .select("*")
+      .eq("verified", true)
       .order("created_at", { ascending: false });
 
     if (error) throw error;

@@ -1,18 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { BUSINESS } from "@/lib/config";
 
+// The current day differs between server and client, so it is read as an
+// external value: null during SSR, the real day once hydrated. This avoids both
+// a hydration mismatch and a setState-inside-effect.
+const subscribeToNothing = () => () => {};
+const getCurrentDay = () => new Date().getDay();
+const getServerDay = () => null;
+
 export default function Hours() {
-  const [currentDay, setCurrentDay] = useState<number | null>(null);
+  const currentDay = useSyncExternalStore(
+    subscribeToNothing,
+    getCurrentDay,
+    getServerDay
+  );
   const mapsQuery = encodeURIComponent(BUSINESS.fullAddress);
   const mapsLink = `https://maps.google.com/?q=${mapsQuery}`;
   const embedMapUrl = `https://www.google.com/maps?q=${mapsQuery}&z=15&output=embed`;
-
-  useEffect(() => {
-    // Get current day (0 = Sunday, 1 = Monday, etc.)
-    setCurrentDay(new Date().getDay());
-  }, []);
 
   const hours = [
     { day: "Monday", time: "10:00 AM - 7:00 PM", dayIndex: 1 },

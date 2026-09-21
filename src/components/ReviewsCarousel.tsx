@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import type { Review } from "@/lib/reviews";
 
 interface ReviewsCarouselProps {
@@ -44,25 +44,31 @@ function MobileCarousel({ reviews }: { reviews: Review[] }) {
   const touchStartY = useRef<number | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const resetInterval = () => {
+  // A refetch can return a shorter list than the one `index` was set against
+  // (an upstream review source timing out shrinks it dramatically), which used
+  // to read past the end and crash. Clamp during render instead of storing a
+  // corrected index, so there is never an out-of-range value to read.
+  const safeIndex = index < reviews.length ? index : 0;
+
+  const resetInterval = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setIndex(prev => (prev + 1) % reviews.length);
     }, 4000);
-  };
+  }, [reviews.length]);
 
   useEffect(() => {
     resetInterval();
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
-  }, [reviews.length]);
+  }, [resetInterval]);
 
   const goTo = (i: number) => {
     setIndex(i);
     resetInterval();
   };
 
-  const next = () => goTo((index + 1) % reviews.length);
-  const prev = () => goTo((index - 1 + reviews.length) % reviews.length);
+  const next = () => goTo((safeIndex + 1) % reviews.length);
+  const prev = () => goTo((safeIndex - 1 + reviews.length) % reviews.length);
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -74,12 +80,13 @@ function MobileCarousel({ reviews }: { reviews: Review[] }) {
     const dx = e.changedTouches[0].clientX - touchStartX.current;
     const dy = Math.abs(e.changedTouches[0].clientY - (touchStartY.current ?? 0));
     if (Math.abs(dx) > 40 && Math.abs(dx) > dy) {
-      dx < 0 ? next() : prev();
+      if (dx < 0) next();
+      else prev();
     }
     touchStartX.current = null;
   };
 
-  const review = reviews[index];
+  const review = reviews[safeIndex];
 
   return (
     <div className="md:hidden">
@@ -105,7 +112,7 @@ function MobileCarousel({ reviews }: { reviews: Review[] }) {
             key={i}
             onClick={() => goTo(i)}
             className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === index ? "w-6 bg-[#C9A84C]" : "w-1.5 bg-[#444444]"
+              i === safeIndex ? "w-6 bg-[#C9A84C]" : "w-1.5 bg-[#444444]"
             }`}
             aria-label={`Go to review ${i + 1}`}
           />
@@ -113,7 +120,7 @@ function MobileCarousel({ reviews }: { reviews: Review[] }) {
       </div>
 
       <p className="text-center text-[10px] text-[#F5F5F5]/40 font-display mt-3 tracking-[0.3em] uppercase">
-        Swipe to browse · {index + 1} / {reviews.length}
+        Swipe to browse · {safeIndex + 1} / {reviews.length}
       </p>
     </div>
   );
@@ -136,7 +143,7 @@ function DesktopMarquee({ reviews }: { reviews: Review[] }) {
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
       <div
-        className="flex gap-6 py-8"
+        className="reviews-marquee flex gap-6 py-8"
         style={{ animation: `marquee ${duration}s linear infinite`, willChange: "transform" }}
       >
         {duplicated.map((review, i) => (

@@ -135,3 +135,31 @@ video {
   height: auto;
   display: block;
 }
+
+/* === REDUCED MOTION ===
+   Honour the OS-level "reduce motion" preference. Animations are neutralised
+   rather than blanket-disabled: .reveal starts at opacity 0, so simply killing
+   transitions would leave most of the page permanently invisible. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Reveal-on-scroll elements: show them outright instead of animating in. */
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* The reviews marquee translates forever; park it at the start. */
+  .reviews-marquee {
+    animation: none !important;
+    transform: none !important;
+  }
+}

@@ -53,10 +53,13 @@ export default function ReviewSubmitForm({ onSuccess }: ReviewSubmitFormProps) {
       if (onSuccess) {
         onSuccess();
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       setMessage({
         type: "error",
-        text: error.message || "Failed to submit review. Please try again.",
+        text:
+          error instanceof Error && error.message
+            ? error.message
+            : "Failed to submit review. Please try again.",
       });
     } finally {
       setIsSubmitting(false);

@@ -26,19 +26,28 @@ CREATE INDEX IF NOT EXISTS reviews_rating_idx ON reviews(rating);
 -- Enable Row Level Security (RLS)
 ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
 
--- Public reads: show verified reviews + all website-submitted reviews (pending moderation visible to submitters)
+-- Public reads: verified reviews ONLY.
+-- Website submissions are inserted with verified = false and stay invisible to
+-- the public until a moderator sets verified = true. Do not add
+-- "OR source = 'website'" here — that publishes unmoderated user text.
 -- NOTE: Run DROP/CREATE statements below in the Supabase SQL editor to apply RLS changes.
 -- DROP POLICY IF EXISTS "Anyone can read reviews" ON reviews;
+-- DROP POLICY IF EXISTS "Anyone can read verified reviews" ON reviews;
 CREATE POLICY "Anyone can read verified reviews" ON reviews
-  FOR SELECT USING (verified = true OR source = 'website');
+  FOR SELECT USING (verified = true);
 
--- Inserts: require non-empty author/text and valid rating at the database level (belt-and-suspenders with API validation)
+-- Inserts: require non-empty author/text and valid rating at the database level (belt-and-suspenders with API validation).
+-- The anon key is public (NEXT_PUBLIC_*), so anyone can call Supabase directly
+-- without going through /api/reviews/submit. These checks pin verified = false
+-- and source = 'website' so a direct insert cannot self-publish.
 -- DROP POLICY IF EXISTS "Anyone can submit reviews" ON reviews;
 CREATE POLICY "Anyone can submit reviews" ON reviews
   FOR INSERT WITH CHECK (
-    author IS NOT NULL AND length(trim(author)) > 0
-    AND text IS NOT NULL AND length(trim(text)) >= 10
+    author IS NOT NULL AND length(trim(author)) > 0 AND length(author) <= 100
+    AND text IS NOT NULL AND length(trim(text)) >= 10 AND length(text) <= 1000
     AND rating >= 1 AND rating <= 5
+    AND verified = false
+    AND source = 'website'
   );
 
 -- Create function to update the updated_at timestamp

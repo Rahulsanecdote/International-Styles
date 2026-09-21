@@ -109,12 +109,11 @@ export default function RootLayout({
     ],
     "priceRange": "$$",
     "paymentAccepted": "Cash, Credit Card",
-    "foundingDate": "2001",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "150"
-    }
+    "foundingDate": "2001"
+    // NOTE: no "aggregateRating" here on purpose. Google's structured data
+    // policy requires it to reflect real, verifiable ratings shown on the page.
+    // If you want rich-result stars back, compute it from getReviewStats()
+    // rather than hardcoding a value.
   };
 
   return (

@@ -6,9 +6,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const navigation = [
-    { name: "Services", href: "#services" },
-    { name: "Hours", href: "#hours" },
-    { name: "Book Now", href: "#booking" },
+    // Root-relative so these still resolve from /reviews, where the sections
+    // themselves don't exist.
+    { name: "Services", href: "/#services" },
+    { name: "Hours", href: "/#hours" },
+    { name: "Book Now", href: "/#booking" },
   ];
 
   const socialLinks = [

@@ -16,6 +16,12 @@ export default function Services() {
       price: "$100",
     },
     {
+      name: "Scissor Cut (Flow Style)",
+      description:
+        "Designed for longer hairstyles and flow cuts, this scissor-focused service maintains length while creating shape, movement, and natural texture — clippers may be used for subtle tapering and a clean finish around the sides and neckline",
+      price: "$80",
+    },
+    {
       name: "Shape Up w/ Hot Towel Shave",
       description: "Clean lineup with a classic hot towel finish",
       price: "$80",

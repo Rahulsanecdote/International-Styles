@@ -18,8 +18,10 @@ export default function Nav() {
   }, []);
 
   const navLinks = [
-    { href: "#services", label: "Services", external: false },
-    { href: "#hours", label: "Hours", external: false },
+    // Root-relative so these still resolve from /reviews, where the sections
+    // themselves don't exist.
+    { href: "/#services", label: "Services", external: false },
+    { href: "/#hours", label: "Hours", external: false },
     { href: "https://booksy.com/en-us/7016_international-styles-barbershop_barber-shop_28561_jersey-city", label: "Book Now", external: true },
   ];
 
@@ -35,7 +37,7 @@ export default function Nav() {
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-3 group">
             <div className="relative w-9 h-9 transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/logo-icon.png"
@@ -48,7 +50,7 @@ export default function Nav() {
             <span className="font-display text-xs tracking-[0.15em] uppercase text-[#F5F5F5] hidden sm:block">
               International Styles
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center space-x-12">

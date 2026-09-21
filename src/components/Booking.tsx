@@ -4,20 +4,19 @@ import { useEffect, useState } from "react";
 import { BUSINESS } from "@/lib/config";
 
 export default function Booking() {
-  const [widgetLoaded, setWidgetLoaded] = useState(false);
-  const [widgetError, setWidgetError] = useState(false);
-
   const widgetUrl = process.env.NEXT_PUBLIC_BOOKSY_WIDGET_URL || "";
+
+  const [widgetLoaded, setWidgetLoaded] = useState(false);
+  // widgetUrl is inlined at build time, so "not configured" is known up front
+  // and belongs in the initial state rather than a setState inside the effect.
+  const [widgetError, setWidgetError] = useState(!widgetUrl);
   const widgetLinkLabel = `Open ${BUSINESS.name} on Booksy`;
   const profileUrl =
     process.env.NEXT_PUBLIC_BOOKSY_PROFILE_URL ||
     "https://booksy.com/en-us/7016_international-styles-barbershop_barber-shop_28561_jersey-city";
 
   useEffect(() => {
-    if (!widgetUrl) {
-      setWidgetError(true);
-      return;
-    }
+    if (!widgetUrl) return;
 
     const labelWidgetLinks = () => {
       const widgetLinks = document.querySelectorAll<HTMLAnchorElement>(

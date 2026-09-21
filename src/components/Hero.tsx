@@ -12,10 +12,16 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/background.jpg')" }}
+      {/* Background Image — served through next/image so it is resized and
+          delivered as AVIF/WebP. A CSS background would ship the full 690KB
+          JPEG to every device and is invisible to the LCP preloader. */}
+      <Image
+        src="/background.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
       />
       <div className="absolute inset-0 bg-[#0A0A0A]/50" />
 
